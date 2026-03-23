@@ -1,22 +1,58 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StayFinder - Hostel List</title>
+    <title>StayFinder - List of Hostels</title>
+    <style>
+        /* Figma-r moto ektu simple styling */
+        .hostel-card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px;
+            width: 300px;
+            border-radius: 10px;
+            display: inline-block;
+            vertical-align: top;
+        }
+        .hostel-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>StayFinder - Available Hostels</h1>
+    <h1>LIST OF GIRLS & BOYS HOSTEL</h1>
     <hr>
-    <ul>
+
+    <div class="container">
         {% for hostel in hostels %}
-        <li>
-            <strong>{{ hostel.title }}</strong>
-            Price: {{ hostel.price_per_month }} BDT <br>
-            Location: {{ hostel.location }} <br>
-            Gender: {{ hostel.get_gender_display }}
-        </li>
+        <div class="hostel-card">
+            {% if hostel.image %}
+                <img src="{{ hostel.image.url }}" class="hostel-img">
+            {% else %}
+                <img src="https://via.placeholder.com/300x200" class="hostel-img">
+            {% endif %}
+
+            <h3>{{ hostel.title }}</h3>
+            <p><strong>Price:</strong> {{ hostel.price_per_month }} BDT, month</p>
+            <p><strong>Location:</strong> {{ hostel.location }}</p>
+            <p><strong>Gender:</strong> {{ hostel.get_gender_display }}</p>
+
+            <a href="#" class="btn">View Details</a>
+        </div>
         {% empty %}
-        <li>No hostels found! Add some from Admin panel.</li>
+        <p>No hostels added yet. Please add from Admin panel!</p>
         {% endfor %}
-    </ul>
+    </div>
 </body>
 </html>

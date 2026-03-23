@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>StayFinder - Hostel List</title>
+</head>
+<body>
+    <h1>StayFinder - Available Hostels</h1>
+    <hr>
+    <ul>
+        {% for hostel in hostels %}
+        <li>
+            <strong>{{ hostel.title }}</strong>
+            Price: {{ hostel.price_per_month }} BDT <br>
+            Location: {{ hostel.location }} <br>
+            Gender: {{ hostel.get_gender_display }}
+        </li>
+        {% empty %}
+        <li>No hostels found! Add some from Admin panel.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

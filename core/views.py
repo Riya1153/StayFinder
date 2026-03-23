@@ -1,3 +1,6 @@
 from django.shortcuts import render
+from .models import Hostel
 
-# Create your views here.
+def hostel_list(request):
+    hostels = Hostel.objects.all()
+    return render(request, 'hostel_list.html', {'hostels': hostels})

@@ -1,57 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StayFinder - List of Hostels</title>
+    <title>StayFinder - Available Hostels</title>
     <style>
-        /* Figma-r moto ektu simple styling */
-        .hostel-card {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin: 10px;
-            width: 300px;
-            border-radius: 10px;
-            display: inline-block;
-            vertical-align: top;
-        }
-        .hostel-img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 5px;
-        }
-        .btn {
-            background-color: #007bff;
-            color: white;
-            padding: 8px 15px;
-            text-decoration: none;
-            border-radius: 5px;
-            display: inline-block;
-            margin-top: 10px;
-        }
+        body { font-family: Arial; background: #f4f4f4; text-align: center; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
+        .card { background: white; padding: 15px; border-radius: 10px; width: 250px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 150px; border-radius: 8px; object-fit: cover; }
+        .btn { display: block; background: #000; color: #fff; padding: 10px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
     </style>
 </head>
 <body>
     <h1>LIST OF GIRLS & BOYS HOSTEL</h1>
-    <hr>
-
     <div class="container">
         {% for hostel in hostels %}
-        <div class="hostel-card">
+        <div class="card">
             {% if hostel.image %}
-                <img src="{{ hostel.image.url }}" class="hostel-img">
+                <img src="{{ hostel.image.url }}">
             {% else %}
-                <img src="https://via.placeholder.com/300x200" class="hostel-img">
+                <img src="https://via.placeholder.com/250x150">
             {% endif %}
-
             <h3>{{ hostel.title }}</h3>
-            <p><strong>Price:</strong> {{ hostel.price_per_month }} BDT, month</p>
-            <p><strong>Location:</strong> {{ hostel.location }}</p>
-            <p><strong>Gender:</strong> {{ hostel.get_gender_display }}</p>
-
+            <p>{{ hostel.price_per_month }} BDT/month</p>
+            <p>📍 {{ hostel.location }}</p>
             <a href="#" class="btn">View Details</a>
         </div>
         {% empty %}
-        <p>No hostels added yet. Please add from Admin panel!</p>
+            <p>No hostels found! Please add from Admin.</p>
         {% endfor %}
     </div>
 </body>

@@ -1,33 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>StayFinder - Available Hostels</title>
     <style>
-        body { font-family: Arial; background: #f4f4f4; text-align: center; }
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 20px; }
-        .card { background: white; padding: 15px; border-radius: 10px; width: 250px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 150px; border-radius: 8px; object-fit: cover; }
-        .btn { display: block; background: #000; color: #fff; padding: 10px; text-decoration: none; border-radius: 5px; margin-top: 10px; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f0f2f5; padding: 20px; }
+
+        .header-title {
+            text-align: center; color: #1a2a3a; font-size: 24px;
+            font-weight: 800; margin-bottom: 30px; text-transform: uppercase;
+        }
+
+        .container {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px; max-width: 1200px; margin: 0 auto;
+        }
+
+        .hostel-card {
+            background: white; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); transition: 0.3s;
+            border: 1px solid #e1e4e8;
+        }
+        .hostel-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        .hostel-img { width: 100%; height: 200px; object-fit: cover; }
+
+        .card-content { padding: 20px; }
+        .hostel-title { font-size: 18px; font-weight: 700; color: #2c3e50; margin-bottom: 8px; }
+        .price { color: #2c3e50; font-size: 16px; font-weight: 600; margin-bottom: 5px; }
+        .location { color: #7f8c8d; font-size: 14px; margin-bottom: 15px; }
+
+        .btn-details {
+            display: block; text-align: center; background: #2c3e50;
+            color: white; padding: 12px; text-decoration: none;
+            border-radius: 12px; font-weight: 600; transition: 0.3s;
+        }
+        .btn-details:hover { background: #1a2a3a; }
+
+        .no-data { text-align: center; grid-column: 1 / -1; padding: 50px; color: #7f8c8d; }
     </style>
 </head>
 <body>
-    <h1>LIST OF GIRLS & BOYS HOSTEL</h1>
+
+    <h2 class="header-title">LIST OF GIRLS & BOYS HOSTEL</h2>
+
     <div class="container">
         {% for hostel in hostels %}
-        <div class="card">
+        <div class="hostel-card">
             {% if hostel.image %}
-                <img src="{{ hostel.image.url }}">
+                <img src="{{ hostel.image.url }}" class="hostel-img">
             {% else %}
-                <img src="https://via.placeholder.com/250x150">
+                <img src="https://via.placeholder.com/300x200?text=No+Image" class="hostel-img">
             {% endif %}
-            <h3>{{ hostel.title }}</h3>
-            <p>{{ hostel.price_per_month }} BDT/month</p>
-            <p>📍 {{ hostel.location }}</p>
-            <a href="#" class="btn">View Details</a>
+
+            <div class="card-content">
+                <h3 class="hostel-title">{{ hostel.title }}</h3>
+                <p class="price">{{ hostel.price_per_month }} BDT, month</p>
+                <p class="location">📍 {{ hostel.location }}</p>
+                <a href="#" class="btn-details">View Details</a>
+            </div>
         </div>
         {% empty %}
-            <p>No hostels found! Please add from Admin.</p>
+        <div class="no-data">
+            <p>Oops! No hostels available right now.</p>
+            <a href="/admin/" style="color: #2c3e50;">Add one from Admin Panel</a>
+        </div>
         {% endfor %}
     </div>
+
 </body>
 </html>

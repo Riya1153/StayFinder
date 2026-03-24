@@ -1,21 +1,120 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 <head>
-    <title>StayFinder - Welcome</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder - Front Page</title>
     <style>
-        body { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; font-family: Arial; text-align: center; margin: 0; }
-        .logo { font-size: 50px; font-weight: bold; }
-        .btn-container { display: flex; flex-direction: column; gap: 15px; width: 200px; margin-top: 30px; }
-        .btn { padding: 15px; border-radius: 30px; border: 2px solid black; text-decoration: none; font-weight: bold; }
-        .btn-black { background: black; color: white; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', cursive, sans-serif; }
+
+        body {
+            background-color: #FFF5F5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Front Page Gray Box (Top Left) */
+        .top-left-box {
+            align-self: flex-start;
+            margin: 20px 0 0 30px;
+            background: #D9D9D9;
+            padding: 10px 40px;
+            border: 1px solid #000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* Blue Banner Container */
+        .blue-banner {
+            background-color: #005BB7;
+            width: 90%;
+            max-width: 850px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #000;
+        }
+
+        .main-title {
+            color: #EBD9D9; /* Figma pinkish text color */
+            font-size: 55px;
+            font-weight: bold;
+            line-height: 1.1;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        /* 3 Images Row */
+        .image-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .img-box {
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #000;
+        }
+
+        /* Tagline */
+        .tagline {
+            font-size: 22px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Purple Buttons with Shadows */
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 250px;
+        }
+
+        .btn {
+            background-color: #9370DB; /* Purple from image */
+            color: #000;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px #000; /* Dark shadow effect */
+        }
     </style>
 </head>
 <body>
-    <div class="logo">HOSTEL<br>FINDER</div>
-    <p style="color: gray;">FIND YOUR NEXT RELIABLE "STAYS"</p>
-    <div class="btn-container">
-       <a href="/hostels/" class="btn btn-reg">Registration</a>
-        <a href="/admin" class="btn btn-black">LOG IN</a>
+
+    <div class="top-left-box">FRONT PAGE</div>
+
+    <div class="blue-banner">
+        <h1 class="main-title">HOUSING AND<br>MESS FINDING</h1>
     </div>
+
+    <div class="image-row">
+        <img src="{% static 'images/Hostel1.png' %}" class="img-box" alt="Room 1">
+        <img src="{% static 'images/Hostel2.png' %}" class="img-box" alt="Room 2">
+        <img src="{% static 'images/Hostel3.png' %}" class="img-box" alt="Room 3">
+    </div>
+
+    <p class="tagline">FIND YOUR NEXT RELIABLE "STAYS"</p>
+
+    <div class="btn-container">
+        <a href="/hostels/" class="btn">Registration</a>
+        <a href="/admin/" class="btn">LOG IN</a>
+    </div>
+
 </body>
 </html>

@@ -7,3 +7,6 @@ def front_page(request):
 def hostel_list(request):
     hostels = Hostel.objects.all()
     return render(request, 'hostel_list.html', {'hostels': hostels}) # Page 5
+
+def registration(request):
+    return render(request, 'registration.html')

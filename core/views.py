@@ -10,3 +10,6 @@ def hostel_list(request):
 
 def registration(request):
     return render(request, 'registration.html')
+
+def login_view(request):
+    return render(request, 'login.html')

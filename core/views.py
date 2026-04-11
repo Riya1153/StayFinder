@@ -16,3 +16,9 @@ def login_view(request):
 
 def forget_password(request):
     return render(request, 'forget_password.html')
+
+def add_hostel(request):
+    return render(request, 'add_hostel.html')
+
+def dashboard(request):
+    return render(request, 'dashboard.html')

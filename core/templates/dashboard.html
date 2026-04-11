@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal Dashboard - StayFinder</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFDADA;
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+        .dashboard-card {
+            background-color: white;
+            width: 360px;
+            padding: 25px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        .header-box {
+            background-color: #D9D9D9;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .circle {
+            width: 90px;
+            height: 90px;
+            background-color: #D9D9D9;
+            border-radius: 50%;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .set-pic-btn {
+            background-color: #61FFEA;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .info-list {
+            text-align: left;
+        }
+        /* Label styling like Figma */
+        .label-text {
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            margin-left: 5px;
+            display: block;
+            text-transform: uppercase;
+        }
+        .info-item {
+            background-color: #F3F3F3;
+            padding: 10px 15px;
+            margin-bottom: 15px; /* Spacing bariyechi */
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .info-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .material-icons {
+            font-size: 20px;
+            color: #555;
+        }
+        input.info-input {
+            border: none;
+            background: transparent;
+            font-weight: bold;
+            width: 100%;
+            font-family: inherit;
+            outline: none;
+        }
+        .logout-btn {
+            background-color: #B2B2FF;
+            border: none;
+            padding: 12px 60px;
+            border-radius: 10px;
+            font-weight: bold;
+            margin-top: 10px;
+            cursor: pointer;
+            width: 80%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-card">
+        <div class="header-box">PERSONAL DASHBOARD</div>
+
+        <div class="circle"></div><br>
+        <button class="set-pic-btn">SET PICTURE</button>
+
+        <div class="info-list">
+            <label class="label-text">NAME</label>
+            <div class="info-item">
+                <input type="text" class="info-input" placeholder="Enter Name">
+                <span class="material-icons">chevron_right</span>
+            </div>
+
+            <label class="label-text">CONTACT NUMBER</label>
+            <div class="info-item">
+                <input type="text" class="info-input" placeholder="Enter Contact Number">
+                <span class="material-icons">chevron_right</span>
+            </div>
+
+            <label class="label-text">HOME ADDRESS</label>
+            <div class="info-item">
+                <input type="text" class="info-input" placeholder="Enter Home Address">
+                <span class="material-icons">chevron_right</span>
+            </div>
+
+            <label class="label-text">LANGUAGE</label>
+            <div class="info-item">
+                <input type="text" class="info-input" placeholder="Enter Language">
+                <span class="material-icons">chevron_right</span>
+            </div>
+
+            <div class="info-item" style="margin-top: 25px;">
+                <div class="info-content">
+                    <span class="material-icons">favorite_border</span> FAVORITES
+                </div>
+                <span class="material-icons">chevron_right</span>
+            </div>
+
+            <div class="info-item">
+                <div class="info-content">
+                    <span class="material-icons">star_border</span> STARRED
+                </div>
+                <span class="material-icons">chevron_right</span>
+            </div>
+
+            <div class="info-item">
+                <div class="info-content">
+                    <span class="material-icons">help_outline</span> HELP & FEEDBACK
+                </div>
+                <span class="material-icons">chevron_right</span>
+            </div>
+        </div>
+
+        <button class="logout-btn">LOG OUT</button>
+    </div>
+
+</body>
+</html>

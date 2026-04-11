@@ -2,100 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>StayFinder - Hostel List</title>
+    <title>House & Hostel List - StayFinder</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background-color: #FFF5F5; padding: 40px; }
-
-        .header-box {
-            background: #D9D9D9; display: inline-block; padding: 10px 20px;
-            margin-bottom: 50px; border-radius: 5px;
-        }
-        .header-title { font-size: 18px; font-weight: 800; color: #000; }
-
-        .container { max-width: 1000px; margin: 0 auto; }
-
-        /* Figma Card Row Fix */
-        .hostel-row {
+        body {
+            background-color: #FFDADA; /* Exact Figma Peach */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 20px;
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 100px; /* Jate niche niche thikmoto thake */
-            width: 100%;
+            justify-content: center;
         }
-
-        .name-side { display: flex; align-items: center; gap: 15px; width: 50%; }
-        .blue-dot { width: 30px; height: 30px; background: #005BB7; border-radius: 50%; flex-shrink: 0; }
-        .hostel-name { font-size: 22px; font-weight: 800; color: #000; text-transform: uppercase; }
-
-        .card-side { width: 50%; display: flex; justify-content: flex-end; }
+        .main-container {
+            width: 360px; /* Exact mobile-view width */
+            background-color: white;
+            border-radius: 25px;
+            padding: 20px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+        }
+        .header-section {
+            background-color: #D9D9D9;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        .filter-buttons {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+        }
+        .filter-btn {
+            flex: 1;
+            background-color: white;
+            border: 1px solid #B5B5B5;
+            padding: 5px 2px;
+            border-radius: 5px;
+            font-size: 9px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .rent-title {
+            background-color: #D9D9D9;
+            padding: 8px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 13px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        /* Grid Layout like Figma */
+        .property-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* 2 items per row */
+            gap: 15px;
+        }
         .card {
-            background: white; border-radius: 15px; width: 300px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); overflow: hidden;
+            background: #fff;
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
-
-        .hostel-img { width: 100%; height: 200px; object-fit: cover; }
-        .card-body { padding: 20px; text-align: left; }
-        .card-title { font-size: 18px; font-weight: 700; color: #333; }
-        .card-price { font-size: 15px; color: #DAA520; font-weight: 600; margin: 5px 0; }
-        .card-location { font-size: 13px; color: #7f8c8d; margin-bottom: 15px; }
-
-        /* Features */
-        .features { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-        .feature-tag {
-            font-size: 11px; background: #E1F0FF; color: #005BB7;
-            padding: 5px 10px; border-radius: 6px; font-weight: bold;
+        .img-box {
+            width: 100%;
+            height: 80px;
+            background-color: #D9D9D9;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
-
-        .btn-view {
-            display: block; width: 100%; padding: 12px;
-            background: #6495ED; color: white; text-align: center;
-            text-decoration: none; border-radius: 10px; font-weight: bold;
+        .name {
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            text-transform: uppercase;
+        }
+        .info {
+            font-size: 8px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .price-red {
+            color: #FF0000;
+        }
+        .details-btn {
+            background-color: #B2B2FF; /* Figma Light Purple */
+            border: none;
+            padding: 5px;
+            width: 100%;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 9px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-box">
-        <h2 class="header-title">LIST OF GIRLS & BOYS HOSTEL</h2>
-    </div>
+    <div class="main-container">
+        <div class="header-section">RENT FOR</div>
 
-    <div class="container">
-        {% for hostel in hostels %}
-        <div class="hostel-row">
-            <div class="name-side">
-                <span class="blue-dot"></span>
-                <h3 class="hostel-name">{{ hostel.title }} (FOR {{ hostel.gender|upper }})</h3>
+        <div class="filter-buttons">
+            <button class="filter-btn">HOUSE LIST</button>
+            <button class="filter-btn">BOYS'S HOSTEL LIST</button>
+            <button class="filter-btn">GIRL'S HOSTEL LIST</button>
+        </div>
+
+        <div class="rent-title">HOUSE RENT</div>
+
+        <div class="property-grid">
+            <div class="card">
+                <div class="img-box"></div>
+                <div class="name">MOONSCAPE</div>
+                <div class="info price-red">CALL FOR PRICE</div>
+                <button class="details-btn">DETAILS</button>
             </div>
 
-            <div class="card-side">
-                <div class="card">
-                    {% if hostel.image %}
-                        <img src="{{ hostel.image.url }}" class="hostel-img">
-                    {% else %}
-                        <img src="https://via.placeholder.com/300x200" class="hostel-img">
-                    {% endif %}
+            <div class="card">
+                <div class="img-box"></div>
+                <div class="name">ARKAM KPLOTAN</div>
+                <div class="info price-red">CALL FOR PRICE</div>
+                <button class="details-btn">DETAILS</button>
+            </div>
 
-                    <div class="card-body">
-                        <p class="card-title">{{ hostel.title }}</p>
-                        <p class="card-price">{{ hostel.price_per_month }} BDT, month</p>
-                        <p style="color: #DAA520; margin-bottom: 5px;">⭐⭐⭐⭐⭐ (4.5)</p>
-                        <p class="card-location">📍 {{ hostel.location }}</p>
+            <div class="card">
+                <div class="img-box"></div>
+                <div class="name">Nagar Chayaneer</div>
+                <div class="info">Owner: Arafat Dev.</div>
+                <button class="details-btn">DETAILS</button>
+            </div>
 
-                        <div class="features">
-                            <span class="feature-tag">📶 WiFi</span>
-                            <span class="feature-tag">🍴 Food</span>
-                            <span class="feature-tag">🛡️ Security</span>
-                        </div>
-
-                        <a href="#" class="btn-view">View Details</a>
-                    </div>
-                </div>
+            <div class="card">
+                <div class="img-box"></div>
+                <div class="name">ARKAM BUILDERS</div>
+                <div class="info">Price: 2350</div>
+                <button class="details-btn">DETAILS</button>
             </div>
         </div>
-        {% empty %}
-            <p>Admin theke hostel add koro!</p>
-        {% endfor %}
     </div>
 
 </body>

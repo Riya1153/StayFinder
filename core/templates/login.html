@@ -20,7 +20,7 @@
         .top-left-box {
             align-self: flex-start;
             margin: 20px 0 0 30px;
-            background: #D9D9D9;
+            background: #D9D9D9; /* Figma consistent gray */
             padding: 10px 60px;
             border: 1px solid #ccc;
             font-weight: bold;
@@ -48,27 +48,35 @@
             gap: 20px;
         }
 
+        /* FIXED INPUT BOX COLOR AND STYLE */
         .input-box {
-            background-color: #D9D9D9;
-            border: none;
+            background-color: #D9D9D9; /* Figma exact Gray */
+            border: none; /* Removed the line border */
             padding: 15px;
             width: 100%;
             text-align: center;
             font-size: 14px;
             text-transform: uppercase;
             font-weight: bold;
+            color: #444; /* Dark gray text */
         }
 
-        /* Submit Button (Turquoise Color like Figma) */
+        /* Focus state to prevent blue highlight from returning */
+        .input-box:focus {
+            background-color: #D9D9D9;
+            outline: none; /* Removes browser's focus highlight */
+        }
+
+        /* Submit Button (Turquoise Color) */
         .btn-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-end; /* Align right like image */
+            align-items: flex-end;
             margin-top: 10px;
         }
 
         .login-btn {
-            background-color: #79E0D6; /* Turquoise blue from image_c92339.png */
+            background-color: #79E0D6; /* Cyan */
             border: none;
             padding: 10px 30px;
             font-weight: bold;

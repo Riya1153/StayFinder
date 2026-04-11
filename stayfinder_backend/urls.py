@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from core.views import hostel_list, front_page, registration, login_view
+from core.views import hostel_list, front_page, registration, login_view, forget_password
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,6 +10,7 @@ urlpatterns = [
     path('hostels/', hostel_list, name='hostel_list'),
     path('registration/', registration, name='registration'),
     path('login/', login_view, name='login'),
+    path('forget-password/', forget_password, name='forget_password'),
 ]
 
 if settings.DEBUG:

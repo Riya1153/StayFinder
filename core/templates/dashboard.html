@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Personal Dashboard - StayFinder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder - Personal Dashboard</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background-color: #FFDADA;
             font-family: 'Inter', sans-serif;
@@ -12,7 +15,6 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
             padding: 20px 0;
         }
         .dashboard-card {
@@ -30,6 +32,7 @@
             font-size: 15px;
             border-radius: 5px;
             margin-bottom: 20px;
+            text-transform: uppercase;
         }
         .circle {
             width: 90px;
@@ -38,6 +41,7 @@
             border-radius: 50%;
             display: inline-block;
             margin-bottom: 10px;
+            border: 1px solid #ccc;
         }
         .set-pic-btn {
             background-color: #61FFEA;
@@ -51,7 +55,6 @@
         .info-list {
             text-align: left;
         }
-        /* Label styling like Figma */
         .label-text {
             font-size: 12px;
             font-weight: bold;
@@ -63,11 +66,13 @@
         .info-item {
             background-color: #F3F3F3;
             padding: 10px 15px;
-            margin-bottom: 15px; /* Spacing bariyechi */
+            margin-bottom: 15px;
             border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
         }
         .info-content {
             display: flex;
@@ -88,15 +93,38 @@
             font-family: inherit;
             outline: none;
         }
-        .logout-btn {
-            background-color: #B2B2FF;
-            border: none;
-            padding: 12px 60px;
+
+        /* New Action Buttons */
+        .action-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .search-btn {
+            background-color: #9370DB; /* Purple from your front page */
+            color: white;
+            padding: 12px;
             border-radius: 10px;
             font-weight: bold;
-            margin-top: 10px;
+            text-decoration: none;
+            width: 100%;
+            display: block;
+            border: 1px solid #000;
+        }
+        .logout-btn {
+            background-color: #B2B2FF;
+            color: black;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
             cursor: pointer;
-            width: 80%;
+            width: 100%;
+            text-decoration: none;
+            display: block;
+            text-align: center;
         }
     </style>
 </head>
@@ -111,51 +139,48 @@
         <div class="info-list">
             <label class="label-text">NAME</label>
             <div class="info-item">
-                <input type="text" class="info-input" placeholder="Enter Name">
+                <input type="text" class="info-input" placeholder="REDITA">
                 <span class="material-icons">chevron_right</span>
             </div>
 
             <label class="label-text">CONTACT NUMBER</label>
             <div class="info-item">
-                <input type="text" class="info-input" placeholder="Enter Contact Number">
+                <input type="text" class="info-input" placeholder="01XXXXXXXXX">
                 <span class="material-icons">chevron_right</span>
             </div>
 
             <label class="label-text">HOME ADDRESS</label>
             <div class="info-item">
-                <input type="text" class="info-input" placeholder="Enter Home Address">
+                <input type="text" class="info-input" placeholder="DHAKA, BANGLADESH">
                 <span class="material-icons">chevron_right</span>
             </div>
 
             <label class="label-text">LANGUAGE</label>
             <div class="info-item">
-                <input type="text" class="info-input" placeholder="Enter Language">
+                <input type="text" class="info-input" placeholder="ENGLISH / BANGLA">
                 <span class="material-icons">chevron_right</span>
             </div>
 
-            <div class="info-item" style="margin-top: 25px;">
+            <a href="#" class="info-item" style="margin-top: 25px;">
                 <div class="info-content">
                     <span class="material-icons">favorite_border</span> FAVORITES
                 </div>
                 <span class="material-icons">chevron_right</span>
-            </div>
+            </a>
 
-            <div class="info-item">
+            <a href="#" class="info-item">
                 <div class="info-content">
                     <span class="material-icons">star_border</span> STARRED
                 </div>
                 <span class="material-icons">chevron_right</span>
-            </div>
-
-            <div class="info-item">
-                <div class="info-content">
-                    <span class="material-icons">help_outline</span> HELP & FEEDBACK
-                </div>
-                <span class="material-icons">chevron_right</span>
-            </div>
+            </a>
         </div>
 
-        <button class="logout-btn">LOG OUT</button>
+        <div class="action-btns">
+            <a href="{% url 'hostel_list' %}" class="search-btn">SEARCH HOUSE & HOSTELS</a>
+
+            <a href="{% url 'front_page' %}" class="logout-btn">LOG OUT</a>
+        </div>
     </div>
 
 </body>

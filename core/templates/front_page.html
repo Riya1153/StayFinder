@@ -87,6 +87,12 @@
             text-align: center;
             border: 2px solid #000;
             box-shadow: 4px 4px 0px #000;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            box-shadow: 2px 2px 0px #000;
+            transform: translateY(2px);
         }
     </style>
 </head>
@@ -99,16 +105,16 @@
     </div>
 
     <div class="image-row">
-        <img src="{% static 'images/Hostel1.png' %}" class="img-box" alt="Room 1">
-        <img src="{% static 'images/Hostel2.png' %}" class="img-box" alt="Room 2">
-        <img src="{% static 'images/Hostel3.png' %}" class="img-box" alt="Room 3">
+        <img src="{% static 'images/moonscape.png' %}" class="img-box" alt="Moonscape">
+        <img src="{% static 'images/arkam.png' %}" class="img-box" alt="Arkam">
+        <img src="{% static 'images/nagar.png' %}" class="img-box" alt="Nagar">
     </div>
 
     <p class="tagline">FIND YOUR NEXT RELIABLE "STAYS"</p>
 
     <div class="btn-container">
-        <a href="/registration/" class="btn">Registration</a>
-        <a href="/login/" class="btn">LOG IN</a>
+        <a href="{% url 'registration' %}" class="btn">Registration</a>
+        <a href="{% url 'login' %}" class="btn">LOG IN</a>
     </div>
 
 </body>

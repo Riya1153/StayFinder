@@ -12,10 +12,10 @@ urlpatterns = [
     path('forget-password/', forget_password, name='forget_password'),
     path('add-hostel/', add_hostel, name='add_hostel'),
     path('dashboard/', dashboard, name='dashboard'),
-    path('hostels/', hostel_list, name='hostel_list')
-
+    path('hostels/', hostel_list, name='hostel_list'),
 ]
 
+# Development static file serving configuration
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS[0])
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -14,6 +14,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            padding-bottom: 50px;
         }
 
         /* Top Left Header */
@@ -82,14 +83,28 @@
         .submit-btn {
             background-color: #B39DDB; /* Light purple button */
             border: none;
-            padding: 10px;
+            padding: 12px;
             font-weight: bold;
             text-transform: uppercase;
             margin-top: 20px;
             cursor: pointer;
             box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            display: block;
         }
 
+        .login-link {
+            margin-top: 25px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .login-link a {
+            color: #6A1B9A;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -102,34 +117,36 @@
 
     <h2 class="form-title">SIGN UP OR CREATE AN ACCOUNT</h2>
 
-    <form class="signup-form">
+    <form class="signup-form" action="{% url 'dashboard' %}" method="GET">
         <div class="input-group">
             <label>Name</label>
-            <input type="text">
+            <input type="text" name="name" required>
         </div>
 
         <div class="input-group">
             <label>Gender</label>
-            <input type="text">
+            <input type="text" name="gender">
         </div>
 
         <div class="input-group">
             <label>Phone Number</label>
-            <input type="text">
+            <input type="text" name="phone">
         </div>
 
         <div class="input-group">
             <label>Email address</label>
-            <input type="email">
+            <input type="email" name="email" required>
         </div>
 
         <div class="input-group">
             <label>Password</label>
-            <input type="password">
+            <input type="password" name="password" required>
         </div>
 
         <button type="submit" class="submit-btn">SUBMIT</button>
     </form>
+
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
 
 </body>
 </html>

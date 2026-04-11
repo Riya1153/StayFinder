@@ -6,57 +6,52 @@
     <title>House & Hostel List - StayFinder</title>
     <style>
         body {
-            background-color: #FFDADA; /* Figma Peach background */
+            background-color: #FFDADA; /* Exact Figma Peach background */
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 40px; /* Padding for entire page like Figma */
+            padding: 40px;
             color: #000;
         }
 
-        /* Gray rectangular header background */
         .gray-header {
             background-color: #D9D9D9;
-            padding: 5px 10px;
+            padding: 5px 15px;
             display: inline-block;
             font-weight: bold;
             font-size: 13px;
             text-transform: uppercase;
-            margin-bottom: 25px; /* Space before main lists */
+            margin-bottom: 25px;
         }
 
-        /* Main lists container */
         .list-container {
-            text-align: left; /* Strict Left Alignment for all text */
+            text-align: left;
             margin-bottom: 40px;
-            margin-left: 10px; /* Aligns with gray header corner */
+            margin-left: 10px;
         }
 
         .main-title {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 5px; /* Tight spacing between items */
+            margin: 5px 0;
         }
 
         .sub-title {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: bold;
             text-transform: uppercase;
-            margin-top: 0;
-            margin-bottom: 5px;
+            margin: 5px 0;
         }
 
-        /* Grid for properties */
         .property-row {
-            display: flex; /* Flexbox for horizontal layout */
-            gap: 20px; /* Spacing between cards */
-            justify-content: flex-start; /* Aligns row to the left */
-            margin-left: 10px; /* Aligns row with text lists */
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            margin-left: 10px;
         }
 
         .card {
-            width: 180px; /* Fixed width for cards like Figma */
+            width: 180px;
             background: #fff;
             border-radius: 20px;
             padding: 10px;
@@ -64,12 +59,12 @@
             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         }
 
-        .img-placeholder {
+        .property-img {
             width: 100%;
-            height: 120px; /* Image placeholder height */
-            background-color: #D9D9D9; /* Default gray for now */
+            height: 120px;
             border-radius: 15px;
             margin-bottom: 8px;
+            object-fit: cover; /* Chobi jeno stretch na hoy */
         }
 
         .card-title {
@@ -80,10 +75,10 @@
         }
 
         .details-btn {
-            background-color: #D9D9D9; /* Figma light gray button */
+            background-color: #D9D9D9;
             border: none;
             padding: 8px;
-            width: 60%; /* Smaller button like Figma */
+            width: 70%;
             border-radius: 5px;
             font-weight: bold;
             font-size: 10px;
@@ -93,6 +88,8 @@
     </style>
 </head>
 <body>
+
+    {% load static %}
 
     <div class="gray-header">RENT FOR</div>
 
@@ -105,24 +102,25 @@
     <div class="gray-header">HOUSE RENT</div>
 
     <div class="property-row">
-        <div class="card">
-            <div class="img-placeholder"></div>
-            <div class="card-title">MOONSCAPE</div>
-            <button class="details-btn">DETAILS</button>
-        </div>
-
-        <div class="card">
-            <div class="img-placeholder"></div>
-            <div class="card-title">ARKAM KPLOTAN</div>
-            <button class="details-btn">DETAILS</button>
-        </div>
-
-        <div class="card">
-            <div class="img-placeholder"></div>
-            <div class="card-title">Nagar Chayaneer</div>
-            <button class="details-btn">DETAILS</button>
-        </div>
+    {% load static %}
+    <div class="card">
+        <img src="{% static 'images/moonscape.png' %}" alt="Moonscape" class="property-img">
+        <div class="card-title">MOONSCAPE</div>
+        <button class="details-btn">DETAILS</button>
     </div>
+
+    <div class="card">
+        <img src="{% static 'images/arkam.png' %}" alt="Arkam" class="property-img">
+        <div class="card-title">ARKAM KPLOTAN</div>
+        <button class="details-btn">DETAILS</button>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'images/nagar.png' %}" alt="Nagar" class="property-img">
+        <div class="card-title">Nagar Chayaneer</div>
+        <button class="details-btn">DETAILS</button>
+    </div>
+</div>
 
 </body>
 </html>

@@ -2,147 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>House & Hostel List - StayFinder</title>
     <style>
         body {
-            background-color: #FFDADA; /* Exact Figma Peach */
+            background-color: #FFDADA; /* Figma Peach background */
             font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
+            padding: 40px; /* Padding for entire page like Figma */
+            color: #000;
         }
-        .main-container {
-            width: 360px; /* Exact mobile-view width */
-            background-color: white;
-            border-radius: 25px;
-            padding: 20px;
-            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
-        }
-        .header-section {
+
+        /* Gray rectangular header background */
+        .gray-header {
             background-color: #D9D9D9;
-            padding: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 14px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        .filter-buttons {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 20px;
-        }
-        .filter-btn {
-            flex: 1;
-            background-color: white;
-            border: 1px solid #B5B5B5;
-            padding: 5px 2px;
-            border-radius: 5px;
-            font-size: 9px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .rent-title {
-            background-color: #D9D9D9;
-            padding: 8px;
-            text-align: center;
+            padding: 5px 10px;
+            display: inline-block;
             font-weight: bold;
             font-size: 13px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-        /* Grid Layout like Figma */
-        .property-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 items per row */
-            gap: 15px;
-        }
-        .card {
-            background: #fff;
-            border: 1px solid #E0E0E0;
-            border-radius: 12px;
-            padding: 8px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .img-box {
-            width: 100%;
-            height: 80px;
-            background-color: #D9D9D9;
-            border-radius: 8px;
-            margin-bottom: 8px;
-        }
-        .name {
-            font-size: 10px;
-            font-weight: bold;
-            margin-bottom: 3px;
             text-transform: uppercase;
+            margin-bottom: 25px; /* Space before main lists */
         }
-        .info {
-            font-size: 8px;
+
+        /* Main lists container */
+        .list-container {
+            text-align: left; /* Strict Left Alignment for all text */
+            margin-bottom: 40px;
+            margin-left: 10px; /* Aligns with gray header corner */
+        }
+
+        .main-title {
+            font-size: 20px;
             font-weight: bold;
-            color: #333;
-            margin-bottom: 8px;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 5px; /* Tight spacing between items */
+        }
+
+        .sub-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 0;
+            margin-bottom: 5px;
+        }
+
+        /* Grid for properties */
+        .property-row {
+            display: flex; /* Flexbox for horizontal layout */
+            gap: 20px; /* Spacing between cards */
+            justify-content: flex-start; /* Aligns row to the left */
+            margin-left: 10px; /* Aligns row with text lists */
+        }
+
+        .card {
+            width: 180px; /* Fixed width for cards like Figma */
+            background: #fff;
+            border-radius: 20px;
+            padding: 10px;
             text-align: center;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         }
-        .price-red {
-            color: #FF0000;
-        }
-        .details-btn {
-            background-color: #B2B2FF; /* Figma Light Purple */
-            border: none;
-            padding: 5px;
+
+        .img-placeholder {
             width: 100%;
+            height: 120px; /* Image placeholder height */
+            background-color: #D9D9D9; /* Default gray for now */
+            border-radius: 15px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .details-btn {
+            background-color: #D9D9D9; /* Figma light gray button */
+            border: none;
+            padding: 8px;
+            width: 60%; /* Smaller button like Figma */
             border-radius: 5px;
             font-weight: bold;
-            font-size: 9px;
+            font-size: 10px;
+            text-transform: uppercase;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="header-section">RENT FOR</div>
+    <div class="gray-header">RENT FOR</div>
 
-        <div class="filter-buttons">
-            <button class="filter-btn">HOUSE LIST</button>
-            <button class="filter-btn">BOYS'S HOSTEL LIST</button>
-            <button class="filter-btn">GIRL'S HOSTEL LIST</button>
+    <div class="list-container">
+        <h1 class="main-title">HOUSE LIST</h1>
+        <h2 class="sub-title">BOYS'S HOSTEL LIST</h2>
+        <h2 class="sub-title">GIRL'S HOSTEL LIST</h2>
+    </div>
+
+    <div class="gray-header">HOUSE RENT</div>
+
+    <div class="property-row">
+        <div class="card">
+            <div class="img-placeholder"></div>
+            <div class="card-title">MOONSCAPE</div>
+            <button class="details-btn">DETAILS</button>
         </div>
 
-        <div class="rent-title">HOUSE RENT</div>
+        <div class="card">
+            <div class="img-placeholder"></div>
+            <div class="card-title">ARKAM KPLOTAN</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
 
-        <div class="property-grid">
-            <div class="card">
-                <div class="img-box"></div>
-                <div class="name">MOONSCAPE</div>
-                <div class="info price-red">CALL FOR PRICE</div>
-                <button class="details-btn">DETAILS</button>
-            </div>
-
-            <div class="card">
-                <div class="img-box"></div>
-                <div class="name">ARKAM KPLOTAN</div>
-                <div class="info price-red">CALL FOR PRICE</div>
-                <button class="details-btn">DETAILS</button>
-            </div>
-
-            <div class="card">
-                <div class="img-box"></div>
-                <div class="name">Nagar Chayaneer</div>
-                <div class="info">Owner: Arafat Dev.</div>
-                <button class="details-btn">DETAILS</button>
-            </div>
-
-            <div class="card">
-                <div class="img-box"></div>
-                <div class="name">ARKAM BUILDERS</div>
-                <div class="info">Price: 2350</div>
-                <button class="details-btn">DETAILS</button>
-            </div>
+        <div class="card">
+            <div class="img-placeholder"></div>
+            <div class="card-title">Nagar Chayaneer</div>
+            <button class="details-btn">DETAILS</button>
         </div>
     </div>
 

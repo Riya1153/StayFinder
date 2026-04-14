@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Owner Registration - StayFinder</title>
+    <style>
+        body {
+            background-color: #FFDADA; /* Peach background from Figma */
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 0;
+        }
+
+        .card {
+            background-color: #FFFFFF;
+            width: 380px;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-box {
+            background-color: #D9D9D9;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+            text-align: left;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #E8E8E8;
+            box-sizing: border-box;
+            font-size: 13px;
+        }
+
+        label {
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+            margin-left: 5px;
+        }
+
+        /* Category ar Image label-er styling */
+        .special-label {
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .btn-submit {
+            background-color: #61FFEA; /* Turquoise button */
+            border: none;
+            padding: 12px 60px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* File input styling */
+        input[type="file"] {
+            background-color: white;
+            padding: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header-box">REGISTRATION FOR OWNER</div>
+
+        <div class="input-group">
+            <input type="text" placeholder="OWNER NAME">
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="HOSTEL NAME">
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="HOSTEL ADDRESS">
+        </div>
+
+        <div class="input-group">
+            <label class="special-label">SELECT CATEGORY</label>
+            <select>
+                <option value="girls">GIRLS</option>
+                <option value="boys">BOYS</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="ROOM CATEGORY (E.G. 2 SEATER)">
+        </div>
+
+        <div class="input-group">
+            <input type="number" placeholder="PRICE">
+        </div>
+
+        <div class="input-group">
+            <input type="text" placeholder="MOBILE NUMBER">
+        </div>
+
+        <div class="input-group">
+            <label class="special-label">UPLOAD HOSTEL IMAGE</label>
+            <input type="file">
+        </div>
+
+        <button class="btn-submit">SUBMIT</button>
+    </div>
+
+</body>
+</html>

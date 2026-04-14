@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder - Front Page</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', cursive, sans-serif; }
+
+        body {
+            background-color: #FFF5F5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .top-left-box {
+            align-self: flex-start;
+            margin: 20px 0 0 30px;
+            background: #D9D9D9;
+            padding: 10px 40px;
+            border: 1px solid #000;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .blue-banner {
+            background-color: #005BB7;
+            width: 90%;
+            max-width: 850px;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #000;
+        }
+
+        .main-title {
+            color: #EBD9D9;
+            font-size: 55px;
+            font-weight: bold;
+            line-height: 1.1;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .image-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .img-box {
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
+            border: 1px solid #000;
+        }
+
+        .tagline {
+            font-size: 22px;
+            font-weight: 900;
+            color: #000;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 250px;
+        }
+
+        .btn {
+            background-color: #9370DB; /* Purple */
+            color: #000;
+            padding: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            text-align: center;
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0px #000;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            box-shadow: 2px 2px 0px #000;
+            transform: translateY(2px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-left-box">FRONT PAGE</div>
+
+    <div class="blue-banner">
+        <h1 class="main-title">HOUSING AND<br>MESS FINDING</h1>
+    </div>
+
+    <div class="image-row">
+        <img src="{% static 'images/moonscape.png' %}" class="img-box" alt="Moonscape">
+        <img src="{% static 'images/arkam.png' %}" class="img-box" alt="Arkam">
+        <img src="{% static 'images/nagar.png' %}" class="img-box" alt="Nagar">
+    </div>
+
+    <p class="tagline">FIND YOUR NEXT RELIABLE "STAYS"</p>
+
+    <div class="btn-container">
+        <a href="{% url 'registration' %}" class="btn">Registration</a>
+        <a href="{% url 'login' %}" class="btn">LOG IN</a>
+    </div>
+
+</body>
+</html>

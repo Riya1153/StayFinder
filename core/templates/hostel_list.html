@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House & Hostel List - StayFinder</title>
+    <style>
+        body {
+            background-color: #FFDADA; /* Exact Figma Peach background */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px;
+            color: #000;
+        }
+
+        .gray-header {
+            background-color: #D9D9D9;
+            padding: 5px 15px;
+            display: inline-block;
+            font-weight: bold;
+            font-size: 13px;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+        }
+
+        .list-container {
+            text-align: left;
+            margin-bottom: 40px;
+            margin-left: 10px;
+        }
+
+        .main-title {
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 5px 0;
+        }
+
+        .sub-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 5px 0;
+        }
+
+        .property-row {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-start;
+            margin-left: 10px;
+        }
+
+        .card {
+            width: 180px;
+            background: #fff;
+            border-radius: 20px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .property-img {
+            width: 100%;
+            height: 120px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            object-fit: cover; /* Chobi jeno stretch na hoy */
+        }
+
+        .card-title {
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .details-btn {
+            background-color: #D9D9D9;
+            border: none;
+            padding: 8px;
+            width: 70%;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    {% load static %}
+
+    <div class="gray-header">RENT FOR</div>
+
+    <div class="list-container">
+        <h1 class="main-title">HOUSE LIST</h1>
+        <h2 class="sub-title">BOYS'S HOSTEL LIST</h2>
+        <h2 class="sub-title">GIRL'S HOSTEL LIST</h2>
+    </div>
+
+    <div class="gray-header">HOUSE RENT</div>
+
+    <div class="property-row">
+    {% load static %}
+    <div class="card">
+        <img src="{% static 'images/moonscape.png' %}" alt="Moonscape" class="property-img">
+        <div class="card-title">MOONSCAPE</div>
+        <button class="details-btn">DETAILS</button>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'images/arkam.png' %}" alt="Arkam" class="property-img">
+        <div class="card-title">ARKAM KPLOTAN</div>
+        <button class="details-btn">DETAILS</button>
+    </div>
+
+    <div class="card">
+        <img src="{% static 'images/nagar.png' %}" alt="Nagar" class="property-img">
+        <div class="card-title">Nagar Chayaneer</div>
+        <button class="details-btn">DETAILS</button>
+    </div>
+</div>
+
+</body>
+</html>

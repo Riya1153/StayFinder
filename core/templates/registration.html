@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder - Sign Up</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Times New Roman', serif; }
+
+        body {
+            background-color: #FFF5F5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+
+        /* Top Left Header */
+        .top-left-box {
+            align-self: flex-start;
+            margin: 20px 0 0 30px;
+            background: #D9D9D9;
+            padding: 10px 40px;
+            border: 1px solid #ccc;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
+
+        /* Purple Banner */
+        .purple-banner {
+            background-color: #6A1B9A; /* Dark purple like image */
+            width: 55%;
+            padding: 15px;
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .banner-text {
+            color: #C0CA33; /* Yellowish/Lime text color from image */
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* Form Styling */
+        .form-title {
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .signup-form {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            background-color: #D9D9D9;
+            border: none;
+            padding: 10px;
+            width: 100%;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background-color: #B39DDB; /* Light purple button */
+            border: none;
+            padding: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            text-decoration: none;
+            color: black;
+            display: block;
+        }
+
+        .login-link {
+            margin-top: 25px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .login-link a {
+            color: #6A1B9A;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-left-box">SIGN UP A NEW ACCOUNT</div>
+
+    <div class="purple-banner">
+        <h1 class="banner-text">HI! STAYS FINDER</h1>
+    </div>
+
+    <h2 class="form-title">SIGN UP OR CREATE AN ACCOUNT</h2>
+
+    <form class="signup-form" action="{% url 'dashboard' %}" method="GET">
+        <div class="input-group">
+            <label>Name</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="input-group">
+            <label>Gender</label>
+            <input type="text" name="gender">
+        </div>
+
+        <div class="input-group">
+            <label>Phone Number</label>
+            <input type="text" name="phone">
+        </div>
+
+        <div class="input-group">
+            <label>Email address</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <button type="submit" class="submit-btn">SUBMIT</button>
+    </form>
+
+    <p class="login-link">Already have an account? <a href="{% url 'login' %}">Log In</a></p>
+
+</body>
+</html>

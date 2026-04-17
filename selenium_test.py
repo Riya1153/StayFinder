@@ -4,13 +4,11 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 
-
 # =========================
 # SETUP DRIVER
 # =========================
 driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 driver.maximize_window()
-
 
 try:
     # =========================
@@ -104,35 +102,37 @@ try:
         driver.find_element(By.XPATH, "//input[contains(@placeholder,'Language')]").send_keys("English")
 
         print("Dashboard input fields working")
-
     except:
         print("Dashboard inputs not found")
 
-    # =========================
-    # 6. HOSTELS PAGE
-    # =========================
+    # =========================================================
+    # SECTION 6: HOSTEL LIST & DYNAMIC PROPERTY DETAILS
+    # =========================================================
+    print("Starting navigation test for Hostel List...")
     driver.get("http://127.0.0.1:8000/hostels/")
     time.sleep(3)
 
-    if "HOSTEL" in driver.page_source.upper():
-        print("Hostels page opened")
+    if "HOUSE RENT" in driver.page_source.upper():
+        print("Hostel List page verified.")
 
-    # Click all DETAILS buttons
-    try:
-        buttons = driver.find_elements(By.XPATH, "//button[contains(text(),'DETAILS')]")
+    property_links = driver.find_elements(By.XPATH, "//a[contains(text(),'DETAILS')]")
+    total_properties = len(property_links)
+    print(f"Found {total_properties} properties to test.")
 
-        for i in range(len(buttons)):
-            buttons = driver.find_elements(By.XPATH, "//button[contains(text(),'DETAILS')]")
-            buttons[i].click()
-            time.sleep(2)
-            print(f"Clicked DETAILS {i+1}")
-            print("URL:", driver.current_url)
+    for i in range(total_properties):
+        current_links = driver.find_elements(By.XPATH, "//a[contains(text(),'DETAILS')]")
 
-            driver.back()
-            time.sleep(2)
+        print(f"Testing Property {i + 1}...")
+        current_links[i].click()
+        time.sleep(2)
 
-    except:
-        print("Details buttons not working")
+        if "FEATURES & FACILITIES" in driver.page_source:
+            print(f"Property {i + 1} Details: SUCCESS (URL: {driver.current_url})")
+        else:
+            print(f"Property {i + 1} Details: FAILED")
+
+        driver.back()
+        time.sleep(2)
 
     # =========================
     # 7. LOGOUT

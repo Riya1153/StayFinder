@@ -1,0 +1,161 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - StayFinder</title>
+    <style>
+        body {
+            background-color: #FFDADA; /* Figma Peach Background */
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .back-btn {
+            background-color: #D9D9D9;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+            font-size: 14px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        /* Main Container for Frame Design */
+        .details-frame {
+            background-color: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header-section {
+            border-bottom: 2px solid #EEEEEE;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+        }
+
+        .property-title {
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0;
+            color: #000;
+        }
+
+        .owner-info {
+            font-size: 16px;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        /* Features List Styling */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+
+        .feature-item::before {
+            content: "✔";
+            margin-right: 15px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .book-now-btn {
+            background-color: #D9D9D9;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+
+        .book-now-btn:hover {
+            background-color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="{% url 'hostel_list' %}" class="back-btn">← BACK TO LIST</a>
+
+    <div class="details-frame">
+        <div class="header-section">
+            {% if id == 1 %}
+                <h1 class="property-title">MOONSCAPE</h1>
+                <div class="owner-info">
+                    <p><strong>OWNER DETAILS:</strong> ARAFAT DEVELOPERS & BUILDERS</p>
+                    <p><strong>LOCATION:</strong> Bashundhara R/A, Dhaka</p>
+                </div>
+            {% elif id == 2 %}
+                <h1 class="property-title">ARKAM KPLOTAN</h1>
+                <div class="owner-info">
+                    <p><strong>OWNER DETAILS:</strong> ARKAM BUILDERS LIMITED</p>
+                    <p><strong>LOCATION:</strong> Uttara Sector 4, Dhaka</p>
+                </div>
+            {% elif id == 3 %}
+                <h1 class="property-title">NAGAR CHAYANEER</h1>
+                <div class="owner-info">
+                    <p><strong>OWNER DETAILS:</strong> NAGAR REAL ESTATE GROUP</p>
+                    <p><strong>LOCATION:</strong> Dhanmondi 27, Dhaka</p>
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="content-section">
+            <h3 class="section-title">FEATURES & FACILITIES</h3>
+            <ul class="feature-list">
+                {% if id == 1 %}
+                    <li class="feature-item">High-speed WiFi Connection</li>
+                    <li class="feature-item">24/7 Security (CCTV)</li>
+                    <li class="feature-item">Electricity Backup (Generator)</li>
+                    <li class="feature-item">Clean Drinking Water Service</li>
+                    <li class="feature-item">Attached/Common Bathroom</li>
+                {% elif id == 2 %}
+                    <li class="feature-item">Fully Furnished Rooms</li>
+                    <li class="feature-item">Kitchen Access for Students</li>
+                    <li class="feature-item">Daily Room Cleaning Service</li>
+                    <li class="feature-item">Rooftop Garden Access</li>
+                    <li class="feature-item">Laundry Facilities</li>
+                {% elif id == 3 %}
+                    <li class="feature-item">Individual Study Table & Chair</li>
+                    <li class="feature-item">Air Conditioned (AC) Rooms Available</li>
+                    <li class="feature-item">Mess/Food Service (3 Times)</li>
+                    <li class="feature-item">Gym and Exercise Area</li>
+                    <li class="feature-item">Fire Safety Management</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <button class="book-now-btn">BOOK NOW</button>
+    </div>
+
+</body>
+</html>

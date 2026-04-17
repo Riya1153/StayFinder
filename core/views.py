@@ -21,3 +21,6 @@ def dashboard(request):
 
 def hostel_list(request):
     return render(request, 'hostel_list.html')
+
+def property_details(request, property_id):
+    return render(request, 'property_details.html', {'id': property_id})

@@ -1,18 +1,19 @@
 from django.contrib import admin
 from django.urls import path
-from core.views import front_page, registration, login_view, forget_password, add_hostel, dashboard, hostel_list
+from core import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', front_page, name='front_page'),
-    path('registration/', registration, name='registration'),
-    path('login/', login_view, name='login'),
-    path('forget-password/', forget_password, name='forget_password'),
-    path('add-hostel/', add_hostel, name='add_hostel'),
-    path('dashboard/', dashboard, name='dashboard'),
-    path('hostels/', hostel_list, name='hostel_list'),
+    path('', views.front_page, name='front_page'),
+    path('registration/', views.registration, name='registration'),
+    path('login/', views.login_view, name='login'),
+    path('forget-password/', views.forget_password, name='forget_password'),
+    path('add-hostel/', views.add_hostel, name='add_hostel'),
+    path('dashboard/', views.dashboard, name='dashboard'),
+    path('hostels/', views.hostel_list, name='hostel_list'),
+    path('property-details/<int:property_id>/', views.property_details, name='property_details'),
 ]
 
 # Development static file serving configuration

@@ -29,25 +29,21 @@
             margin-left: 10px;
         }
 
-        .main-title {
-            font-size: 24px;
+        .main-title, .sub-title {
             font-weight: bold;
             text-transform: uppercase;
             margin: 5px 0;
         }
 
-        .sub-title {
-            font-size: 22px;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin: 5px 0;
-        }
+        .main-title { font-size: 24px; }
+        .sub-title { font-size: 22px; }
 
         .property-row {
             display: flex;
             gap: 20px;
             justify-content: flex-start;
             margin-left: 10px;
+            flex-wrap: wrap;
         }
 
         .card {
@@ -64,7 +60,7 @@
             height: 120px;
             border-radius: 15px;
             margin-bottom: 8px;
-            object-fit: cover; /* Chobi jeno stretch na hoy */
+            object-fit: cover;
         }
 
         .card-title {
@@ -76,14 +72,15 @@
 
         .details-btn {
             background-color: #D9D9D9;
-            border: none;
+            color: black;
             padding: 8px;
             width: 70%;
             border-radius: 5px;
             font-weight: bold;
             font-size: 10px;
             text-transform: uppercase;
-            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
         }
     </style>
 </head>
@@ -110,25 +107,24 @@
     <div class="gray-header">HOUSE RENT</div>
 
     <div class="property-row">
-    {% load static %}
-    <div class="card">
-        <img src="{% static 'images/moonscape.png' %}" alt="Moonscape" class="property-img">
-        <div class="card-title">MOONSCAPE</div>
-        <button class="details-btn">DETAILS</button>
-    </div>
+        <div class="card">
+            <img src="{% static 'images/moonscape.png' %}" alt="Moonscape" class="property-img">
+            <div class="card-title">MOONSCAPE</div>
+            <a href="{% url 'property_details' 1 %}" class="details-btn">DETAILS</a>
+        </div>
 
-    <div class="card">
-        <img src="{% static 'images/arkam.png' %}" alt="Arkam" class="property-img">
-        <div class="card-title">ARKAM KPLOTAN</div>
-        <button class="details-btn">DETAILS</button>
-    </div>
+        <div class="card">
+            <img src="{% static 'images/arkam.png' %}" alt="Arkam" class="property-img">
+            <div class="card-title">ARKAM KPLOTAN</div>
+            <a href="{% url 'property_details' 2 %}" class="details-btn">DETAILS</a>
+        </div>
 
-    <div class="card">
-        <img src="{% static 'images/nagar.png' %}" alt="Nagar" class="property-img">
-        <div class="card-title">Nagar Chayaneer</div>
-        <button class="details-btn">DETAILS</button>
+        <div class="card">
+            <img src="{% static 'images/nagar.png' %}" alt="Nagar" class="property-img">
+            <div class="card-title">Nagar Chayaneer</div>
+            <a href="{% url 'property_details' 3 %}" class="details-btn">DETAILS</a>
+        </div>
     </div>
-</div>
 
 </body>
 </html>

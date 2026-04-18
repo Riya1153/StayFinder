@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder - Searching Sector</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', cursive, sans-serif; }
+
+        body {
+            background-color: #FFF5F5;
+            min-height: 100vh;
+            padding: 20px 30px;
+        }
+
+        .top-left-box {
+            background: #D9D9D9;
+            padding: 10px 40px;
+            border: 1px solid #000;
+            font-weight: bold;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .blue-banner {
+            background-color: #005BB7;
+            width: 100%;
+            max-width: 520px;
+            padding: 14px 24px;
+            margin-bottom: 30px;
+        }
+        .blue-banner h2 {
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tab-row {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .tab-label {
+            font-size: 13px;
+            font-weight: bold;
+            margin-right: 6px;
+        }
+        .tab-option {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .tab-option input[type="radio"] {
+            accent-color: #005BB7;
+            cursor: pointer;
+        }
+
+        .form-panel {
+            background: #E8E8E8;
+            border: 1px solid #bbb;
+            padding: 20px 22px;
+            width: 100%;
+            max-width: 520px;
+        }
+        .form-panel h3 {
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 16px;
+            color: #222;
+        }
+
+        .field-group {
+            margin-bottom: 14px;
+        }
+        .field-group label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #333;
+        }
+        .field-group label span.required { color: red; }
+
+        .field-group select,
+        .field-group input[type="text"] {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #aaa;
+            background: #fff;
+            font-size: 13px;
+            font-family: inherit;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            cursor: pointer;
+        }
+        .field-group input[type="text"] {
+            background-image: none;
+        }
+
+        .price-row {
+            display: flex;
+            gap: 10px;
+        }
+        .price-row .field-group { flex: 1; }
+
+        .field-group textarea {
+            width: 100%;
+            height: 80px;
+            padding: 8px 10px;
+            border: 1px solid #aaa;
+            background: #fff;
+            font-size: 13px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .sub-heading {
+            font-size: 13px;
+            font-weight: bold;
+            margin: 10px 0 8px 0;
+            color: #333;
+        }
+
+        .bottom-btn-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 30px;
+        }
+        .btn-tell {
+            border: 2px solid #E87722;
+            color: #E87722;
+            background: transparent;
+            padding: 12px 28px;
+            font-size: 15px;
+            font-weight: bold;
+            font-family: inherit;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-tell:hover { background: #E87722; color: #fff; }
+
+        .btn-manual {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            text-decoration: underline;
+            font-family: inherit;
+        }
+
+        .category-section { display: none; }
+        .category-section.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="top-left-box">SEARCHING SECTOR</div>
+
+    <div class="blue-banner">
+        <h2>FOR BOOKING</h2>
+    </div>
+
+    <div class="tab-row">
+        <span class="tab-label">Property I'm looking for</span>
+        <label class="tab-option">
+            <input type="radio" name="category" value="buy" onchange="showSection('buy')" checked> Buy
+        </label>
+        <label class="tab-option">
+            <input type="radio" name="category" value="rent" onchange="showSection('rent')"> Rent
+        </label>
+        <label class="tab-option">
+            <input type="radio" name="category" value="roommates" onchange="showSection('roommates')"> Roommates
+        </label>
+    </div>
+
+    <!-- BUY SECTION -->
+    <div id="section-buy" class="form-panel category-section active">
+        <h3>Property Information</h3>
+
+        <div class="field-group">
+            <label>Types of Property <span class="required">*</span></label>
+            <select name="buy_property_type">
+                <option value="">Select</option>
+                <option>Apartment/Flats</option>
+                <option>Flat</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Size in Sqft <span class="required">*</span></label>
+            <select name="buy_size">
+                <option value="any">Any</option>
+                <option>Less than 500 sqft</option>
+                <option>500 sqft to 999 sqft</option>
+                <option>1000 sqft to 1499 sqft</option>
+                <option>1500 sqft to 1999 sqft</option>
+                <option>2000 sqft to 2999 sqft</option>
+                <option>3000 sqft to 3999 sqft</option>
+                <option>4000 sqft to 4999 sqft</option>
+                <option>5000 sqft to 5999 sqft</option>
+                <option>Above 6000 sqft</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>City <span class="required">*</span></label>
+            <input type="text" name="buy_city" value="Dhaka" placeholder="Enter city">
+        </div>
+
+        <div class="field-group">
+            <label>Location</label>
+            <input type="text" name="buy_location" placeholder="Any">
+        </div>
+    </div>
+
+    <!-- RENT SECTION -->
+    <div id="section-rent" class="form-panel category-section">
+        <h3>Property Information</h3>
+
+        <div class="field-group">
+            <label>Types of Property <span class="required">*</span></label>
+            <select name="rent_property_type">
+                <option value="">Select</option>
+                <option>Apartment/Flats</option>
+                <option>Flat</option>
+                <option>Sublet</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Tenant Type <span class="required">*</span></label>
+            <select name="rent_tenant_type">
+                <option value="any">Any</option>
+                <option>Family</option>
+                <option>Female</option>
+                <option>Male</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Monthly Rent <span class="required">*</span></label>
+            <div class="price-row">
+                <div class="field-group">
+                    <select name="rent_price_min">
+                        <option value="">Min</option>
+                        <option>Less than 5000</option>
+                        <option>10000</option>
+                        <option>15000</option>
+                        <option>20000</option>
+                        <option>25000</option>
+                        <option>30000</option>
+                        <option>35000</option>
+                        <option>50000</option>
+                        <option>70000</option>
+                        <option>1 lac</option>
+                        <option>1.5 lac</option>
+                        <option>2 lac</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <select name="rent_price_max">
+                        <option value="">Max</option>
+                        <option>Less than 5000</option>
+                        <option>10000</option>
+                        <option>15000</option>
+                        <option>20000</option>
+                        <option>25000</option>
+                        <option>30000</option>
+                        <option>35000</option>
+                        <option>50000</option>
+                        <option>70000</option>
+                        <option>1 lac</option>
+                        <option>1.5 lac</option>
+                        <option>2 lac</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ROOMMATES SECTION -->
+    <div id="section-roommates" class="form-panel category-section">
+        <h3>Property Information</h3>
+
+        <div class="field-group">
+            <label>Residence Type <span class="required">*</span></label>
+            <select name="room_property_type">
+                <option value="any">Any</option>
+                <option>Commercial Mess</option>
+                <option>Independent Mess</option>
+                <option>Hostel</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Room Type <span class="required">*</span></label>
+            <select name="room_type">
+                <option value="any">Any</option>
+                <option>2 Person in One Room</option>
+                <option>3 Person in One Room</option>
+                <option>4 Person in One Room</option>
+                <option>4+ Person in One Room</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Gender <span class="required">*</span></label>
+            <select name="room_gender">
+                <option value="any">Any</option>
+                <option>Female</option>
+                <option>Male</option>
+            </select>
+        </div>
+
+        <div class="field-group">
+            <label>Monthly Rent <span class="required">*</span></label>
+            <div class="price-row">
+                <div class="field-group">
+                    <select name="room_price_min">
+                        <option value="">Min</option>
+                        <option>1500</option>
+                        <option>2000</option>
+                        <option>3000</option>
+                        <option>5000</option>
+                        <option>10000</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <select name="room_price_max">
+                        <option value="">Max</option>
+                        <option>2000</option>
+                        <option>3000</option>
+                        <option>5000</option>
+                        <option>10000</option>
+                        <option>Above 20000</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <p class="sub-heading">Roommates characteristics requirement</p>
+        <div class="field-group">
+            <textarea name="room_characteristics" placeholder="Describe your ideal roommate..."></textarea>
+        </div>
+    </div>
+
+    <div class="bottom-btn-row">
+        <button class="btn-tell" onclick="submitSearch()">Tell Us Your Requirement</button>
+        <button class="btn-manual" onclick="manualSearch()">MANUAL</button>
+    </div>
+
+    <script>
+        function showSection(category) {
+            document.querySelectorAll('.category-section').forEach(function(sec) {
+                sec.classList.remove('active');
+            });
+            document.getElementById('section-' + category).classList.add('active');
+        }
+
+        function submitSearch() {
+            const category = document.querySelector('input[name="category"]:checked').value;
+            const data = { category: category };
+
+            if (category === 'buy') {
+                data.property_type = document.querySelector('[name="buy_property_type"]').value;
+                data.size          = document.querySelector('[name="buy_size"]').value;
+                data.city          = document.querySelector('[name="buy_city"]').value;
+                data.location      = document.querySelector('[name="buy_location"]').value;
+            } else if (category === 'rent') {
+                data.property_type = document.querySelector('[name="rent_property_type"]').value;
+                data.tenant_type   = document.querySelector('[name="rent_tenant_type"]').value;
+                data.price_min     = document.querySelector('[name="rent_price_min"]').value;
+                data.price_max     = document.querySelector('[name="rent_price_max"]').value;
+            } else if (category === 'roommates') {
+                data.residence_type    = document.querySelector('[name="room_property_type"]').value;
+                data.room_type         = document.querySelector('[name="room_type"]').value;
+                data.gender            = document.querySelector('[name="room_gender"]').value;
+                data.price_min         = document.querySelector('[name="room_price_min"]').value;
+                data.price_max         = document.querySelector('[name="room_price_max"]').value;
+                data.characteristics   = document.querySelector('[name="room_characteristics"]').value;
+            }
+
+            const params = new URLSearchParams(data);
+            window.location.href = '/search-results/?' + params.toString();
+        }
+
+        function manualSearch() {
+            alert('Manual search mode activated.');
+        }
+    </script>
+
+</body>
+</html>

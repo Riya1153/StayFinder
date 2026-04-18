@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StayFinder Hostel List</title>
+    <style>
+        /* Exact Background Color from Screenshot */
+        body {
+            background-color: #FCEEEE;
+            font-family: 'Arial Black', sans-serif;
+            margin: 0;
+            padding: 50px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Top Banner Style */
+        .info-banner {
+            background-color: #D9D9D9;
+            padding: 25px 40px;
+            font-size: 22px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 60px;
+            text-align: left;
+        }
+
+        /* Category Label (Girls/Boys) */
+        .section-label {
+            background-color: #D9D9D9;
+            padding: 5px 15px;
+            font-size: 18px;
+            font-weight: bold;
+            display: table; /* Makes it only as wide as the text */
+            margin-bottom: 30px;
+        }
+
+        /* Card Layout */
+        .hostel-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 60px;
+            gap: 20px;
+        }
+
+        .hostel-card {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hostel-card img {
+            width: 100%;
+            max-width: 220px;
+            height: 180px;
+            object-fit: contain; /* Keeps the full image visible */
+            border-radius: 10px;
+        }
+
+        .hostel-name {
+            margin: 15px 0 10px 0;
+            font-size: 16px;
+            font-weight: 900;
+        }
+
+        /* Details Button Style */
+        .details-btn {
+            background-color: #D9D9D9;
+            border: none;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 0; /* Square edges like screenshot */
+        }
+
+        .details-btn:hover {
+            background-color: #bfbfbf;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="info-banner">FOR MORE INFORMATION CHECK IN BOOKING SECTOR</div>
+
+    <div class="section-label">LIST OF GIRLS HOSTEL</div>
+    <div class="hostel-row">
+        <div class="hostel-card">
+            <img src="../../media/hostels/matrichaya_Hostel.png" alt="Matrichaya">
+            <div class="hostel-name">MATRICHAYA HOSTEL</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
+        <div class="hostel-card">
+            <img src="../../media/hostels/cozy.png" alt="Cozy">
+            <div class="hostel-name">COZY HOMES</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
+        <div class="hostel-card">
+            <img src="../../media/hostels/eco.png" alt="Eco">
+            <div class="hostel-name">ECO-STAY</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
+    </div>
+
+    <div class="section-label">LIST OF BOYS HOSTEL</div>
+    <div class="hostel-row">
+        <div class="hostel-card">
+            <img src="../../media/hostels/Unique_Boys_hostel.png" alt="Unique Boys">
+            <div class="hostel-name">UNIQUE BOYS HOSTEL</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
+        <div class="hostel-card">
+            <img src="../../media/hostels/boys_stay.png" alt="Boys Stay">
+            <div class="hostel-name">BOYS-STAY</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
+        <div class="hostel-card">
+            <img src="../../media/hostels/Ghar_Aangan_Hostel.png" alt="Ghar Aangan">
+            <div class="hostel-name">GHAR-AANGAN HOSTEL</div>
+            <button class="details-btn">DETAILS</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

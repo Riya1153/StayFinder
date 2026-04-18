@@ -30,3 +30,37 @@ def boys_hostel_view(request):
 
 def girls_hostel_view(request):
     return render(request, 'girls_hostel.html')
+
+def searching_sector(request):
+    return render(request, 'searching_sector.html')
+
+
+def search_results(request):
+    category        = request.GET.get('category', '')
+    property_type   = request.GET.get('property_type', '')
+    tenant_type     = request.GET.get('tenant_type', '')
+    residence_type  = request.GET.get('residence_type', '')
+    room_type       = request.GET.get('room_type', '')
+    gender          = request.GET.get('gender', '')
+    price_min       = request.GET.get('price_min', '')
+    price_max       = request.GET.get('price_max', '')
+    size            = request.GET.get('size', '')
+    city            = request.GET.get('city', '')
+    location        = request.GET.get('location', '')
+    characteristics = request.GET.get('characteristics', '')
+
+    context = {
+        'category'        : category,
+        'property_type'   : property_type,
+        'tenant_type'     : tenant_type,
+        'residence_type'  : residence_type,
+        'room_type'       : room_type,
+        'gender'          : gender,
+        'price_min'       : price_min,
+        'price_max'       : price_max,
+        'size'            : size,
+        'city'            : city,
+        'location'        : location,
+        'characteristics' : characteristics,
+    }
+    return render(request, 'search_results.html', context)

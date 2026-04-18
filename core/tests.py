@@ -194,3 +194,255 @@ class PropertyDetailsViewTest(TestCase):
         res = self.client.get(url)
         self.assertEqual(res.status_code, 200)
         self.assertContains(res, "NAGAR CHAYANEER")
+
+
+# =========================================================
+# SEARCHING SECTOR — URL TESTS
+# =========================================================
+class SearchingSectorURLTest(TestCase):
+
+    def test_35_searching_sector_url_resolves(self):
+        from core.views import searching_sector
+        self.assertEqual(resolve('/searching-sector/').func, searching_sector)
+
+    def test_36_search_results_url_resolves(self):
+        from core.views import search_results
+        self.assertEqual(resolve('/search-results/').func, search_results)
+
+    def test_37_searching_sector_named_url(self):
+        self.assertEqual(reverse('searching_sector'), '/searching-sector/')
+
+    def test_38_search_results_named_url(self):
+        self.assertEqual(reverse('search_results'), '/search-results/')
+
+
+# =========================================================
+# SEARCHING SECTOR — PAGE LOAD TESTS
+# =========================================================
+class SearchingSectorPageTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+
+    def test_39_page_returns_200(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertEqual(res.status_code, 200)
+
+    def test_40_correct_template_used(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertTemplateUsed(res, 'searching_sector.html')
+
+    def test_41_page_contains_buy_option(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertContains(res, 'Buy')
+
+    def test_42_page_contains_rent_option(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertContains(res, 'Rent')
+
+    def test_43_page_contains_roommates_option(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertContains(res, 'Roommates')
+
+    def test_44_page_contains_tell_us_button(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertContains(res, 'Tell Us Your Requirement')
+
+    def test_45_page_contains_manual_button(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertContains(res, 'MANUAL')
+
+    def test_46_page_contains_for_booking_banner(self):
+        res = self.client.get(reverse('searching_sector'))
+        self.assertContains(res, 'FOR BOOKING')
+
+
+# =========================================================
+# SEARCHING SECTOR — BUY CATEGORY TESTS
+# =========================================================
+class BuyCategorySearchTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('search_results')
+
+    def test_47_buy_returns_200(self):
+        res = self.client.get(self.url, {'category': 'buy'})
+        self.assertEqual(res.status_code, 200)
+
+    def test_48_buy_category_in_context(self):
+        res = self.client.get(self.url, {'category': 'buy'})
+        self.assertEqual(res.context['category'], 'buy')
+
+    def test_49_buy_property_type_in_context(self):
+        res = self.client.get(self.url, {'category': 'buy', 'property_type': 'Apartment/Flats'})
+        self.assertEqual(res.context['property_type'], 'Apartment/Flats')
+
+    def test_50_buy_size_in_context(self):
+        res = self.client.get(self.url, {'category': 'buy', 'size': '1000 sqft to 1499 sqft'})
+        self.assertEqual(res.context['size'], '1000 sqft to 1499 sqft')
+
+    def test_51_buy_city_in_context(self):
+        res = self.client.get(self.url, {'category': 'buy', 'city': 'Dhaka'})
+        self.assertEqual(res.context['city'], 'Dhaka')
+
+    def test_52_buy_location_in_context(self):
+        res = self.client.get(self.url, {'category': 'buy', 'location': 'Dhanmondi'})
+        self.assertEqual(res.context['location'], 'Dhanmondi')
+
+    def test_53_buy_full_form(self):
+        data = {'category': 'buy', 'property_type': 'Flat', 'size': 'Less than 500 sqft', 'city': 'Chittagong', 'location': 'Agrabad'}
+        res = self.client.get(self.url, data)
+        self.assertEqual(res.status_code, 200)
+        for k, v in data.items():
+            self.assertEqual(res.context[k], v)
+
+    def test_54_buy_missing_optional_defaults_empty(self):
+        res = self.client.get(self.url, {'category': 'buy'})
+        self.assertEqual(res.context['location'], '')
+
+
+# =========================================================
+# SEARCHING SECTOR — RENT CATEGORY TESTS
+# =========================================================
+class RentCategorySearchTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('search_results')
+
+    def test_55_rent_returns_200(self):
+        res = self.client.get(self.url, {'category': 'rent'})
+        self.assertEqual(res.status_code, 200)
+
+    def test_56_rent_category_in_context(self):
+        res = self.client.get(self.url, {'category': 'rent'})
+        self.assertEqual(res.context['category'], 'rent')
+
+    def test_57_rent_tenant_type_family(self):
+        res = self.client.get(self.url, {'category': 'rent', 'tenant_type': 'Family'})
+        self.assertEqual(res.context['tenant_type'], 'Family')
+
+    def test_58_rent_tenant_type_female(self):
+        res = self.client.get(self.url, {'category': 'rent', 'tenant_type': 'Female'})
+        self.assertEqual(res.context['tenant_type'], 'Female')
+
+    def test_59_rent_tenant_type_male(self):
+        res = self.client.get(self.url, {'category': 'rent', 'tenant_type': 'Male'})
+        self.assertEqual(res.context['tenant_type'], 'Male')
+
+    def test_60_rent_price_min_in_context(self):
+        res = self.client.get(self.url, {'category': 'rent', 'price_min': '10000'})
+        self.assertEqual(res.context['price_min'], '10000')
+
+    def test_61_rent_price_max_in_context(self):
+        res = self.client.get(self.url, {'category': 'rent', 'price_max': '30000'})
+        self.assertEqual(res.context['price_max'], '30000')
+
+    def test_62_rent_full_form(self):
+        data = {'category': 'rent', 'property_type': 'Sublet', 'tenant_type': 'Male', 'price_min': '15000', 'price_max': '35000'}
+        res = self.client.get(self.url, data)
+        self.assertEqual(res.status_code, 200)
+        for k, v in data.items():
+            self.assertEqual(res.context[k], v)
+
+    def test_63_rent_price_lac_format(self):
+        res = self.client.get(self.url, {'category': 'rent', 'price_min': '1 lac', 'price_max': '2 lac'})
+        self.assertEqual(res.context['price_min'], '1 lac')
+        self.assertEqual(res.context['price_max'], '2 lac')
+
+
+# =========================================================
+# SEARCHING SECTOR — ROOMMATES CATEGORY TESTS
+# =========================================================
+class RoommatesCategorySearchTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('search_results')
+
+    def test_64_roommates_returns_200(self):
+        res = self.client.get(self.url, {'category': 'roommates'})
+        self.assertEqual(res.status_code, 200)
+
+    def test_65_roommates_category_in_context(self):
+        res = self.client.get(self.url, {'category': 'roommates'})
+        self.assertEqual(res.context['category'], 'roommates')
+
+    def test_66_roommates_commercial_mess(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'residence_type': 'Commercial Mess'})
+        self.assertEqual(res.context['residence_type'], 'Commercial Mess')
+
+    def test_67_roommates_independent_mess(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'residence_type': 'Independent Mess'})
+        self.assertEqual(res.context['residence_type'], 'Independent Mess')
+
+    def test_68_roommates_hostel(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'residence_type': 'Hostel'})
+        self.assertEqual(res.context['residence_type'], 'Hostel')
+
+    def test_69_roommates_room_type_2_person(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'room_type': '2 Person in One Room'})
+        self.assertEqual(res.context['room_type'], '2 Person in One Room')
+
+    def test_70_roommates_room_type_4_plus(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'room_type': '4+ Person in One Room'})
+        self.assertEqual(res.context['room_type'], '4+ Person in One Room')
+
+    def test_71_roommates_gender_female(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'gender': 'Female'})
+        self.assertEqual(res.context['gender'], 'Female')
+
+    def test_72_roommates_gender_male(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'gender': 'Male'})
+        self.assertEqual(res.context['gender'], 'Male')
+
+    def test_73_roommates_characteristics(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'characteristics': 'Non-smoker, quiet'})
+        self.assertEqual(res.context['characteristics'], 'Non-smoker, quiet')
+
+    def test_74_roommates_full_form(self):
+        data = {'category': 'roommates', 'residence_type': 'Hostel', 'room_type': '3 Person in One Room', 'gender': 'Female', 'price_min': '3000', 'price_max': '10000', 'characteristics': 'Clean preferred'}
+        res = self.client.get(self.url, data)
+        self.assertEqual(res.status_code, 200)
+        for k, v in data.items():
+            self.assertEqual(res.context[k], v)
+
+
+# =========================================================
+# SEARCHING SECTOR — EDGE CASE TESTS
+# =========================================================
+class SearchingSectorEdgeCaseTest(TestCase):
+
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('search_results')
+
+    def test_75_no_category_returns_200(self):
+        res = self.client.get(self.url)
+        self.assertEqual(res.status_code, 200)
+
+    def test_76_empty_category_defaults_empty_string(self):
+        res = self.client.get(self.url)
+        self.assertEqual(res.context['category'], '')
+
+    def test_77_invalid_category_still_200(self):
+        res = self.client.get(self.url, {'category': 'invalid_xyz'})
+        self.assertEqual(res.status_code, 200)
+
+    def test_78_all_12_context_keys_present(self):
+        expected = ['category', 'property_type', 'tenant_type', 'residence_type',
+                    'room_type', 'gender', 'price_min', 'price_max',
+                    'size', 'city', 'location', 'characteristics']
+        res = self.client.get(self.url)
+        for key in expected:
+            self.assertIn(key, res.context)
+
+    def test_79_special_chars_in_characteristics(self):
+        res = self.client.get(self.url, {'category': 'roommates', 'characteristics': 'Clean & quiet; no pets!'})
+        self.assertEqual(res.status_code, 200)
+
+    def test_80_unicode_city_name(self):
+        res = self.client.get(self.url, {'category': 'buy', 'city': 'ঢাকা'})
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.context['city'], 'ঢাকা')

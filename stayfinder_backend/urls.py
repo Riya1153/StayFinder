@@ -14,6 +14,8 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
     path('hostels/', views.hostel_list, name='hostel_list'),
     path('property-details/<int:property_id>/', views.property_details, name='property_details'),
+    path('hostels/boys/', views.boys_hostel_view, name='boys_hostel'),
+    path('hostels/girls/', views.girls_hostel_view, name='girls_hostel'),
 ]
 
 # Development static file serving configuration

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girls' Hostel List</title>
+    <style>
+        body {
+            background-color: #fceeee; /* The pink background from your screenshot */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .label-tag {
+            background-color: #d9d9d9;
+            padding: 5px 15px;
+            display: inline-block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .hostel-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .hostel-card {
+            background-color: white;
+            border-radius: 25px; /* The rounded white box */
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .image-wrapper {
+            position: relative;
+            margin-bottom: 15px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .price-tag {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: #28a745; /* Green button */
+            color: white;
+            font-size: 10px;
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .hostel-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .hostel-card h4 {
+            margin: 15px 0;
+            font-size: 18px;
+            color: #222;
+        }
+
+        .details-btn {
+            background-color: #d9d9d9;
+            border: none;
+            width: 90%;
+            padding: 10px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="label-tag">RENT FOR</div>
+    <h1 class="main-title">GIRL'S HOSTEL LIST</h1>
+
+    <div class="hostel-grid">
+        <div class="hostel-card">
+            <div class="image-wrapper">
+                <div class="price-tag">CALL FOR PRICE</div>
+                <img src="../../media/hostels/matrichaya_Hostel.png" alt="Matrichaya">
+            </div>
+            <h4>MATRICHAYA GIRL'S HOSTEL</h4>
+            <button class="details-btn">DETAILS</button>
+        </div>
+
+        <div class="hostel-card">
+            <div class="image-wrapper">
+                <div class="price-tag">CALL FOR PRICE</div>
+                <img src="../../media/hostels/cozy.png" alt="Cozy Homes">
+            </div>
+            <h4>COZY HOMES</h4>
+            <button class="details-btn">DETAILS</button>
+        </div>
+
+        <div class="hostel-card">
+            <div class="image-wrapper">
+                <div class="price-tag">CALL FOR PRICE</div>
+                <img src="../../media/hostels/eco.png" alt="Eco Stay">
+            </div>
+            <h4>ECO-STAY HOSTEL</h4>
+            <button class="details-btn">DETAILS</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

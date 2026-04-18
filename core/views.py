@@ -24,3 +24,9 @@ def hostel_list(request):
 
 def property_details(request, property_id):
     return render(request, 'property_details.html', {'id': property_id})
+
+def boys_hostel_view(request):
+    return render(request, 'boys_hostel.html')
+
+def girls_hostel_view(request):
+    return render(request, 'girls_hostel.html')

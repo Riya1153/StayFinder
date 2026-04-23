@@ -13,24 +13,82 @@
         .bubble-row { color: #28a745; font-weight: bold; margin-bottom: 30px; text-align: center; }
         .bubble-row label { margin-right: 20px; cursor: pointer; color: black; font-weight: normal; }
 
-        /* Content Boxes */
-        .booking-container { display: flex; justify-content: center; gap: 20px; }
+        /* Main Flex Container */
+        .booking-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* FIX: Aligns boxes to the top and stops stretching */
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Left Side: Form Boxes */
         .info-box {
-            display: none; /* Hidden by default */
+            display: none;
             background: #D9D9D9;
-            padding: 25px;
+            padding: 30px;
             border-radius: 5px;
-            width: 380px;
+            width: 450px;
             border: 1px solid #999;
         }
-        .info-box.active { display: block; } /* Visible when active */
+        .info-box.active { display: block; }
 
-        .info-box h3 { color: #555; border-bottom: 1px solid #aaa; padding-bottom: 5px; }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 14px; margin-bottom: 5px; }
-        .form-group select, .form-group input { width: 100%; padding: 8px; border: 1px solid #ccc; }
+        .info-box h3 { color: #555; border-bottom: 1px solid #aaa; padding-bottom: 10px; margin-top: 0; text-align: center;}
 
-        .submit-btn { background: white; border: 2px solid orange; color: orange; padding: 10px 25px; font-weight: bold; cursor: pointer; border-radius: 5px; margin-top: 30px; }
+        /* Making dropdowns and inputs BIGGER */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 15px; margin-bottom: 8px; font-weight: bold; color: #444; }
+
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px; /* Bigger internal space */
+            border: 1px solid #ccc;
+            font-size: 16px; /* Larger text */
+            border-radius: 4px;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        /* Right Side: Requirement Box */
+        .requirement-box {
+            background: white;
+            border: 2px solid orange;
+            width: 200px;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+
+            /* FIX: Prevents the box from becoming too big */
+            align-self: flex-start;
+            height: auto;
+            min-height: 180px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .requirement-text {
+            color: orange;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .submit-btn {
+            background: orange;
+            border: none;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover { background: #e69500; }
     </style>
 </head>
 <body>
@@ -46,55 +104,54 @@
                 {% endfor %}
             </div>
 
-            <div class="booking-container">
+            <div class="booking-wrapper">
+                <div class="form-side">
+                    <div id="box-buy" class="info-box active">
+                        <h3>Property Information</h3>
+                        <div class="form-group"><label>Types of Property</label>{{ form.buy_property }}</div>
+                        <div class="form-group"><label>Size in Sqft</label>{{ form.size_sqft }}</div>
+                        <div class="form-group"><label>City</label>{{ form.city }}</div>
+                        <div class="form-group"><label>Location</label>{{ form.location }}</div>
+                    </div>
 
-                <div id="box-buy" class="info-box active">
-                    <h3>Property Information</h3>
-                    <div class="form-group"><label>Types of Property</label>{{ form.buy_property }}</div>
-                    <div class="form-group"><label>Size in Sqft</label>{{ form.size_sqft }}</div>
-                    <div class="form-group"><label>City</label>{{ form.city }}</div>
-                    <div class="form-group"><label>Location</label>{{ form.location }}</div>
-                </div>
+                    <div id="box-rent" class="info-box">
+                        <h3>Property Information</h3>
+                        <div class="form-group"><label>Types of Property</label>{{ form.rent_property }}</div>
+                        <div class="form-group"><label>Tenant Type</label>{{ form.tenant_type }}</div>
+                        <div class="form-group">
+                            <label>Monthly Rent Range</label>
+                            <div style="display: flex; gap: 10px;">{{ form.rent_min }} {{ form.rent_max }}</div>
+                        </div>
+                    </div>
 
-                <div id="box-rent" class="info-box">
-                    <h3>Property Information</h3>
-                    <div class="form-group"><label>Types of Property</label>{{ form.rent_property }}</div>
-                    <div class="form-group"><label>Tenant Type</label>{{ form.tenant_type }}</div>
-                    <div class="form-group">
-                        <label>Monthly Rent</label>
-                        <div style="display: flex; gap: 5px;">{{ form.rent_min }} {{ form.rent_max }}</div>
+                    <div id="box-roommates" class="info-box">
+                        <h3>Property Information</h3>
+                        <div class="form-group"><label>Residence Type</label>{{ form.res_type }}</div>
+                        <div class="form-group"><label>Room Type</label>{{ form.room_type }}</div>
+                        <div class="form-group"><label>Gender Requirement</label>{{ form.gender }}</div>
+                        <div class="form-group"><label>Monthly Rent (Price Ratio)</label>{{ form.roommate_rent }}</div>
+                        <div class="form-group"><label>Roommates characteristics requirement</label>{{ form.characteristics }}</div>
                     </div>
                 </div>
 
-                <div id="box-roommates" class="info-box">
-                    <h3>Property Information</h3>
-                    <div class="form-group"><label>Residence Type</label>{{ form.res_type }}</div>
-                    <div class="form-group"><label>Room Type</label>{{ form.room_type }}</div>
-                    <div class="form-group"><label>Gender Requirement</label>{{ form.gender }}</div>
-                    <div class="form-group">
-        <label>Monthly Rent (Price Ratio)</label>
-        {{ form.roommate_rent }}
-    </div>
-
-    <div class="form-group">
-        <label>Roommates characteristics requirement</label>
-        {{ form.characteristics }}
+                <div class="requirement-box">
+                    <div class="requirement-text">Tell Us Your Requirement</div>
+                    <button type="submit" class="submit-btn">SUBMIT</button>
                 </div>
-
             </div>
-
-            <button type="submit" class="submit-btn">Tell Us Your Requirement</button>
         </form>
     </div>
 
     <script>
         document.querySelectorAll('input[name="category"]').forEach((radio) => {
             radio.addEventListener('change', function() {
-                // Hide all boxes
+                // Hide all
                 document.querySelectorAll('.info-box').forEach(box => box.classList.remove('active'));
-
-                // Show the specific box (box-buy, box-rent, or box-roommates)
-                document.getElementById('box-' + this.value).classList.add('active');
+                // Show the one matching the radio value
+                const targetBox = document.getElementById('box-' + this.value);
+                if(targetBox) {
+                    targetBox.classList.add('active');
+                }
             });
         });
     </script>

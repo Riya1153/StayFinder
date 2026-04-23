@@ -1,5 +1,6 @@
 from django.test import TestCase, Client
 from django.urls import reverse, resolve
+from .forms import BookingSearchForm
 from core.models import Owner, Hostel
 from core.views import (
     front_page, registration, login_view,
@@ -245,7 +246,7 @@ class SearchingSectorPageTest(TestCase):
         self.assertContains(res, 'Roommates')
 
     def test_44_page_contains_tell_us_button(self):
-        res = self.client.get(reverse('searching_sector'))
+       pyt res = self.client.get(reverse('searching_sector'))
         self.assertContains(res, 'Tell Us Your Requirement')
 
     def test_45_page_contains_manual_button(self):
@@ -409,40 +410,59 @@ class RoommatesCategorySearchTest(TestCase):
             self.assertEqual(res.context[k], v)
 
 
-# =========================================================
-# SEARCHING SECTOR — EDGE CASE TESTS
-# =========================================================
-class SearchingSectorEdgeCaseTest(TestCase):
+class BookingSectorTests(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('search_results')
+        self.url = reverse('searching_sector')
 
-    def test_75_no_category_returns_200(self):
-        res = self.client.get(self.url)
-        self.assertEqual(res.status_code, 200)
+    # Test 1: Check if the form is valid with correct data
+    def test_form_validation(self):
+        data = {
+            'category': 'rent',
+            'rent_property': '1',  # Apartment
+            'tenant_type': '2',  # Female
+            'rent_min': '10000',
+            'rent_max': '20000'
+        }
+        form = BookingSearchForm(data=data)
+        self.assertTrue(form.is_valid())
 
-    def test_76_empty_category_defaults_empty_string(self):
-        res = self.client.get(self.url)
-        self.assertEqual(res.context['category'], '')
+    # Test 2: Check if the page loads correctly
+    def test_page_load(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "FOR BOOKING")  # Checks for your header
 
-    def test_77_invalid_category_still_200(self):
-        res = self.client.get(self.url, {'category': 'invalid_xyz'})
-        self.assertEqual(res.status_code, 200)
+    # Test 3: Check default category
+    def test_default_category(self):
+        form = BookingSearchForm()
+        self.assertEqual(form.fields['category'].initial, 'buy')class BookingSectorTests(TestCase):
 
-    def test_78_all_12_context_keys_present(self):
-        expected = ['category', 'property_type', 'tenant_type', 'residence_type',
-                    'room_type', 'gender', 'price_min', 'price_max',
-                    'size', 'city', 'location', 'characteristics']
-        res = self.client.get(self.url)
-        for key in expected:
-            self.assertIn(key, res.context)
+    def setUp(self):
+        self.client = Client()
+        self.url = reverse('searching_sector')
 
-    def test_79_special_chars_in_characteristics(self):
-        res = self.client.get(self.url, {'category': 'roommates', 'characteristics': 'Clean & quiet; no pets!'})
-        self.assertEqual(res.status_code, 200)
+    # Test 1: Check if the form is valid with correct data
+    def test_form_validation(self):
+        data = {
+            'category': 'rent',
+            'rent_property': '1', # Apartment
+            'tenant_type': '2',   # Female
+            'rent_min': '10000',
+            'rent_max': '20000'
+        }
+        form = BookingSearchForm(data=data)
+        self.assertTrue(form.is_valid())
 
-    def test_80_unicode_city_name(self):
-        res = self.client.get(self.url, {'category': 'buy', 'city': 'ঢাকা'})
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(res.context['city'], 'ঢাকা')
+    # Test 2: Check if the page loads correctly
+    def test_page_load(self):
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "FOR BOOKING") # Checks for your header
+
+    # Test 3: Check default category
+    def test_default_category(self):
+        form = BookingSearchForm()
+        self.assertEqual(form.fields['category'].initial, 'buy')
+

@@ -16,9 +16,10 @@ urlpatterns = [
     path('property-details/<int:property_id>/', views.property_details, name='property_details'),
     path('hostels/boys/', views.boys_hostel_view, name='boys_hostel'),
     path('hostels/girls/', views.girls_hostel_view, name='girls_hostel'),
-path('searching-sector/', views.searching_sector, name='searching_sector'),
-    path('search-results/', views.search_results, name='search_results'),
+    path('searching-sector/', views.searching_sector, name='searching_sector'),
 ]
+
+
 
 # Development static file serving configuration
 if settings.DEBUG:

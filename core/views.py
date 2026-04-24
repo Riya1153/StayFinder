@@ -40,6 +40,9 @@ def searching_sector(request):
 def verify_code(request):
     return render(request, 'verify_code.html')
 
+def search_view(request):
+    return render(request, 'search.html')
+
 
 
 

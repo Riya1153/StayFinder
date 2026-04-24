@@ -42,8 +42,10 @@ def girls_hostel_view(request):
     return render(request, 'girls_hostel.html')
 
 def searching_sector(request):
-    form = BookingSearchForm()
-    # Ensure this matches your template filename
+    form = BookingSearchForm(request.GET or None)
+
+
+
     return render(request, 'searching_sector.html', {'form': form})
 
 def verify_code(request):

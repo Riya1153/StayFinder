@@ -37,6 +37,9 @@ def searching_sector(request):
     # Ensure this matches your template filename
     return render(request, 'searching_sector.html', {'form': form})
 
+def verify_code(request):
+    return render(request, 'verify_code.html')
+
 
 
 

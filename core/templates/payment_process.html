@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Process - Application Form</title>
+    <style>
+        body { background-color: #FFDADA; font-family: 'Inter', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 20px; }
+
+        .form-container { background: white; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 100%; max-width: 600px; overflow: hidden; }
+
+        .header-banner { background: #6f42c1; color: white; padding: 15px; text-align: center; font-weight: bold; font-size: 22px; text-transform: uppercase; }
+
+        .form-content { padding: 40px; background: #e9ecef; border-radius: 0 0 20px 20px; margin: 20px; }
+
+        .form-group { display: flex; align-items: center; margin-bottom: 15px; }
+        .form-group label { flex: 1; font-weight: bold; color: #333; font-size: 14px; }
+        .form-group input { flex: 1.5; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+
+        .submit-section { text-align: center; padding: 20px; }
+        .submit-btn { background: #005BB7; color: white; border: none; padding: 12px 50px; font-weight: bold; font-size: 18px; border-radius: 8px; cursor: pointer; transition: 0.3s; width: 80%; }
+        .submit-btn:hover { background: #00448a; transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header-banner">Application Form</div>
+
+    <form method="POST" class="form-content">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Check-in Date</label>
+            <input type="date" name="check_in">
+        </div>
+
+        <div class="form-group">
+            <label>Number of Roommates</label>
+            <input type="number" name="roommates_count">
+        </div>
+
+        <div class="form-group">
+            <label>Stay Duration</label>
+            <input type="text" name="duration" placeholder="e.g. 6 Months">
+        </div>
+
+        <div class="form-group">
+            <label>📍 Address (Your Location)</label>
+            <input type="text" name="address">
+        </div>
+
+        <div class="form-group">
+            <label>📞 Phone (Phone Number - OWN)</label>
+            <input type="text" name="phone_own">
+        </div>
+
+        <div class="form-group">
+            <label>📞 Phone (Phone Number - GUARDIAN)</label>
+            <input type="text" name="phone_guardian">
+        </div>
+
+        <div class="form-group">
+            <label>NID: COPY & NUMBER</label>
+            <input type="text" name="nid_info">
+        </div>
+
+        <div class="form-group">
+            <label>📧 Email (Email Address)</label>
+            <input type="email" name="email_alt">
+        </div>
+
+        <div class="submit-section">
+            <button type="submit" class="submit-btn">SUBMIT</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

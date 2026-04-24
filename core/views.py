@@ -66,6 +66,9 @@ def requirement(request):
     return render(request, 'requirement.html')
 
 def payment_process(request):
+    if request.method == 'POST':
+
+        return redirect('search_page')
     return render(request, 'payment_process.html')
 
 

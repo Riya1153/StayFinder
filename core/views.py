@@ -55,6 +55,23 @@ def search_view(request):
 
 
 
+def requirement(request):
+    if request.method == 'POST':
+        # Logic to handle the form data will go here later
+        # name = request.POST.get('name')
+        # email = request.POST.get('email')
+        # message = request.POST.get('requirement')
+        return redirect('search_page')  # Redirect back after submission
+
+    return render(request, 'requirement.html')
+
+def payment_process(request):
+    return render(request, 'payment_process.html')
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Hostel
 from .forms import BookingSearchForm
 
@@ -18,6 +18,15 @@ def add_hostel(request):
     return render(request, 'add_hostel.html')
 
 def dashboard(request):
+
+    if request.method == 'POST':
+    # This is where you would normally save the Name, Email, etc.
+    # After saving, we send them to the search page
+      return redirect('search_page')
+
+    # If they are just looking at the page, show them the dashboard
+
+
     return render(request, 'dashboard.html')
 
 def hostel_list(request):

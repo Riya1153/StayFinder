@@ -17,7 +17,6 @@ urlpatterns = [
     path('hostels/boys/', views.boys_hostel_view, name='boys_hostel'),
     path('hostels/girls/', views.girls_hostel_view, name='girls_hostel'),
     path('searching-sector/', views.searching_sector, name='searching_sector'),
-    path('verify/', views.verify_code, name='verify_code'),
     path('search/', views.search_view, name='search_page'),
     path('requirement/', views.requirement, name='requirement'),
     path('payment-process/', views.payment_process, name='payment_process'),

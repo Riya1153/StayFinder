@@ -17,7 +17,6 @@
         }
 
         body {
-            /* Using your mountain sunset image with a slight dark overlay for readability */
             background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
                               url("{% static 'images/stayfinder_mountain_sunset.png' %}");
             background-size: cover;
@@ -29,7 +28,6 @@
             flex-direction: column;
         }
 
-        /* Top Navigation Bar */
         header {
             width: 100%;
             padding: 20px 60px;
@@ -67,7 +65,6 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Center Search Section */
         main {
             flex: 1;
             display: flex;
@@ -75,7 +72,7 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding-bottom: 100px; /* Moves search slightly above absolute center */
+            padding-bottom: 100px;
         }
 
         h1 {
@@ -93,7 +90,6 @@
             opacity: 0.9;
         }
 
-        /* Google-style Search Bar */
         .search-wrapper {
             width: 100%;
             max-width: 600px;
@@ -166,13 +162,46 @@
         <div class="search-wrapper">
             <svg class="search-icon-grey" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
 
-            <input type="text" placeholder="Search hostel,house....">
+            <input type="text" id="searchInput" placeholder="Search house list, boys hostel....">
 
-            <button class="orange-search-circle">
+            <button class="orange-search-circle" id="searchBtn">
                 <svg class="icon-white" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
             </button>
         </div>
     </main>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+
+        function performSearch() {
+            const query = searchInput.value.toLowerCase().trim();
+
+            // Check keywords to redirect to the correct page
+            if (query.includes("house list")) {
+                window.location.href = "/hostels/";
+            }
+            else if (query.includes("boy") || query.includes("boys hostel")) {
+                window.location.href = "/hostels/boys/";
+            }
+            else if (query.includes("girl") || query.includes("girls hostel")) {
+                window.location.href = "/hostels/girls/";
+            }
+            else if (query !== "") {
+                alert("No specific page found for '" + query + "'. Try 'house list' or 'boys hostel'.");
+            }
+        }
+
+        // Trigger search on button click
+        searchBtn.addEventListener('click', performSearch);
+
+        // Trigger search when 'Enter' key is pressed
+        searchInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
 
 </body>
 </html>

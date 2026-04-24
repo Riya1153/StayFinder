@@ -5,109 +5,132 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StayFinder - Front Page</title>
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Comic Sans MS', cursive, sans-serif; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
 
         body {
             background-color: #FFF5F5;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
+            padding: 40px 20px;
         }
 
-        .top-left-box {
-            align-self: flex-start;
-            margin: 20px 0 0 30px;
-            background: #D9D9D9;
-            padding: 10px 40px;
-            border: 1px solid #000;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
+        /* BIG BLUE BANNER */
         .blue-banner {
             background-color: #005BB7;
-            width: 90%;
-            max-width: 850px;
-            height: 250px;
+            width: 100%;
+            max-width: 1100px;
+            height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 30px;
-            margin-bottom: 30px;
-            border: 1px solid #000;
+            margin-bottom: 40px;
+            border: 2px solid #000;
         }
 
         .main-title {
             color: #EBD9D9;
-            font-size: 55px;
+            font-size: 70px;
             font-weight: bold;
-            line-height: 1.1;
             text-align: center;
             text-transform: uppercase;
+            line-height: 1.1;
         }
 
+        /* IMAGE ROW */
         .image-row {
             display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 25px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .img-box {
-            width: 250px;
-            height: 150px;
+            width: 320px;
+            height: 200px;
             object-fit: cover;
-            border: 1px solid #000;
+            border: 2px solid #000;
         }
 
+        /* TAGLINE */
         .tagline {
-            font-size: 22px;
+            font-size: 26px;
             font-weight: 900;
-            color: #000;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-align: center;
         }
 
+        /* BUTTONS */
         .btn-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
-            width: 250px;
+            gap: 20px;
+            width: 300px;
         }
 
         .btn {
-            background-color: #9370DB; /* Purple */
+            background-color: #9370DB;
             color: #000;
-            padding: 12px;
+            padding: 16px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 20px;
+            font-size: 22px;
             text-align: center;
             border: 2px solid #000;
-            box-shadow: 4px 4px 0px #000;
+            box-shadow: 5px 5px 0px #000;
             transition: 0.3s;
         }
 
         .btn:hover {
+            transform: translateY(3px);
             box-shadow: 2px 2px 0px #000;
-            transform: translateY(2px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 40px;
+            }
+
+            .img-box {
+                width: 90%;
+                height: 180px;
+            }
+
+            .btn-container {
+                width: 90%;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="top-left-box">FRONT PAGE</div>
+<div class="container">
 
     <div class="blue-banner">
         <h1 class="main-title">HOUSING AND<br>MESS FINDING</h1>
     </div>
 
     <div class="image-row">
-        <img src="{% static 'images/mess1.png' %}" class="img-box" alt="mess1">
-        <img src="{% static 'images/mess2.png' %}" class="img-box" alt="mess2">
-        <img src="{% static 'images/mess3.png' %}" class="img-box" alt="mess3">
+        <img src="{% static 'images/mess1.png' %}" class="img-box">
+        <img src="{% static 'images/mess2.png' %}" class="img-box">
+        <img src="{% static 'images/mess3.png' %}" class="img-box">
     </div>
 
     <p class="tagline">FIND YOUR NEXT RELIABLE "STAYS"</p>
@@ -116,6 +139,8 @@
         <a href="{% url 'registration' %}" class="btn">Registration</a>
         <a href="{% url 'login' %}" class="btn">LOG IN</a>
     </div>
+
+</div>
 
 </body>
 </html>

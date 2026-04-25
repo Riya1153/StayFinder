@@ -11,9 +11,6 @@ def registration(request):
 def login_view(request):
     return render(request, 'login.html')
 
-def forget_password(request):
-    return render(request, 'forget_password.html')
-
 def add_hostel(request):
     return render(request, 'add_hostel.html')
 

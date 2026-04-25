@@ -20,6 +20,7 @@ urlpatterns = [
     path('search/', views.search_view, name='search_page'),
     path('requirement/', views.requirement, name='requirement'),
     path('payment-process/', views.payment_process, name='payment_process'),
+    path('payment_method/', views.payment_method, name='payment_method'),
 ]
 
 

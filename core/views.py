@@ -70,8 +70,14 @@ def requirement(request):
 def payment_process(request):
     if request.method == 'POST':
 
-        return redirect('search_page')
+        return redirect('payment_method')
     return render(request, 'payment_process.html')
+
+def payment_method(request):
+    if request.method == 'POST':
+        # Logic for handling complaints or payment choices can go here
+        return redirect('search_page')
+    return render(request, 'payment_method.html')
 
 
 

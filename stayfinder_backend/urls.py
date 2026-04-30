@@ -46,6 +46,10 @@ urlpatterns = [
     ), name='password_reset_complete'),
 
      path('bkash-process/', views.bkash_process_view, name='bkash_process'),
+
+    path('atm-process/', views.atm_process_view, name='atm_process'),
+
+    path('payment-success/', views.payment_success_view, name='payment_success'),
 ]
 
 # Static + Media

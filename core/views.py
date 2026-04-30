@@ -80,6 +80,12 @@ def payment_method(request):
 def bkash_process_view(request):
     return render(request, 'bkash_process.html')
 
+def atm_process_view(request):
+    return render(request, 'atm_process.html')
+
+def payment_success_view(request):
+    return render(request, 'payment_success.html')
+
 
 
 

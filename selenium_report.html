@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Selenium Test Report — StayFinder Searching Sector</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { font-family:Arial,sans-serif; background:#f0f2f5; margin:0; padding:30px; }
+    .hdr { background:linear-gradient(135deg,#005BB7,#0074e4); color:#fff; padding:26px 34px; border-radius:10px; margin-bottom:26px; box-shadow:0 4px 12px rgba(0,91,183,.3); }
+    .hdr h1 { margin:0 0 6px; font-size:24px; }
+    .hdr p  { margin:0; font-size:13px; opacity:.85; }
+    .cards  { display:flex; gap:14px; margin-bottom:26px; flex-wrap:wrap; }
+    .card   { background:#fff; border-radius:10px; padding:18px 26px; flex:1; min-width:110px; box-shadow:0 2px 8px rgba(0,0,0,.07); text-align:center; }
+    .num    { font-size:36px; font-weight:bold; line-height:1; }
+    .lbl    { font-size:11px; color:#888; margin-top:5px; text-transform:uppercase; letter-spacing:.5px; }
+    .pw     { background:#e9ecef; border-radius:10px; height:14px; margin-bottom:26px; overflow:hidden; }
+    .pb     { height:14px; background:#dc3545; border-radius:10px; width:8.1%; }
+    table   { width:100%; border-collapse:collapse; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.07); }
+    thead tr { background:#005BB7; color:#fff; }
+    th      { padding:11px 14px; text-align:left; font-size:12px; font-weight:600; }
+    .badge  { display:inline-block; background:#dc3545; color:#fff; padding:7px 20px; border-radius:20px; font-weight:bold; font-size:14px; margin-bottom:24px; }
+    .footer { text-align:center; color:#bbb; font-size:12px; margin-top:22px; }
+  </style>
+</head>
+<body>
+  <div class="hdr">
+    <h1>🧪 Selenium Test Report — StayFinder</h1>
+    <p>Searching Sector Module &nbsp;|&nbsp; 2026-04-25 17:13:35 &nbsp;|&nbsp; Duration: 50.45s</p>
+  </div>
+  <div class="cards">
+    <div class="card"><div class="num" style="color:#005BB7">37</div><div class="lbl">Total</div></div>
+    <div class="card"><div class="num" style="color:#28a745">3</div><div class="lbl">Passed</div></div>
+    <div class="card"><div class="num" style="color:#dc3545">34</div><div class="lbl">Failed</div></div>
+    <div class="card"><div class="num" style="color:#dc3545">8.1%</div><div class="lbl">Pass Rate</div></div>
+  </div>
+  <div style="font-size:13px;color:#555;margin-bottom:6px">Pass Rate: 8.1%</div>
+  <div class="pw"><div class="pb"></div></div>
+  <div class="badge">❌ 34 FAILED</div>
+  <table>
+    <thead><tr><th style="width:50px">#</th><th>Test Name</th><th style="width:100px;text-align:center">Result</th></tr></thead>
+    <tbody><tr style='background:#d4edda'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#1</td>
+              <td style='padding:9px 14px;font-size:13px'>S01 - Page title contains StayFinder</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#28a745;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>PASS</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#2</td>
+              <td style='padding:9px 14px;font-size:13px'>S02 - SEARCHING SECTOR label visible</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#d4edda'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#3</td>
+              <td style='padding:9px 14px;font-size:13px'>S03 - FOR BOOKING banner visible</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#28a745;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>PASS</span>
+              </td>
+            </tr><tr style='background:#d4edda'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#4</td>
+              <td style='padding:9px 14px;font-size:13px'>S04 - All 3 radio buttons present (Buy/Rent/Roommates)</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#28a745;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>PASS</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#5</td>
+              <td style='padding:9px 14px;font-size:13px'>S05 - Buy section visible by default</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#6</td>
+              <td style='padding:9px 14px;font-size:13px'>S06 - Rent section hidden by default</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#7</td>
+              <td style='padding:9px 14px;font-size:13px'>S07 - Roommates section hidden by default</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#8</td>
+              <td style='padding:9px 14px;font-size:13px'>S08 - Tell Us Your Requirement button present</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#9</td>
+              <td style='padding:9px 14px;font-size:13px'>S09 - MANUAL button present</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#10</td>
+              <td style='padding:9px 14px;font-size:13px'>S10 - Click Rent → Rent section shows</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#11</td>
+              <td style='padding:9px 14px;font-size:13px'>S11 - Click Rent → Buy section hides</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#12</td>
+              <td style='padding:9px 14px;font-size:13px'>S12 - Click Roommates → Roommates section shows</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#13</td>
+              <td style='padding:9px 14px;font-size:13px'>S13 - Click Roommates → Rent section hides</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#14</td>
+              <td style='padding:9px 14px;font-size:13px'>S14 - Click Buy after Rent → Buy shows, Rent hides</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#15</td>
+              <td style='padding:9px 14px;font-size:13px'>S15 - Only 1 section visible at a time</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr><td colspan=3 style=padding:0_14px_10px;background:#f8d7da><div style=background:#fff;padding:8px;border-radius:4px;border:1px_solid_#ddd><pre style='font-size:11px;color:#555;margin:4px 0 0;white-space:pre-wrap'>Message: no such element: Unable to locate element: {"method":"css selector","selector":"[id="section-buy"]"}
+  (Session info: chrome=139.0.7258.155); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
+Stacktrace:
+	GetHandleVerifier [0x0xbea8a3+63283]
+	GetHandleVerifier [0x0xbea8e4+63348]
+	(No symbol) [0x0xa23e43]
+	(No symbol) [0x0xa6c8de]
+	(No symbol) [0x0xa6cc7b]
+	(No symbol) [0x0xab4ef2]
+	(No symbol) [0x0xa91464]
+	(No symbol) [0x0xab271a]
+	(No symbol) [0x0xa91216]
+	(No symbol) [0x0xa60855]
+	(No symbol) [0x0xa616f4]
+	GetHandleVerifier [0x0xe5bb43+2623955]
+	GetHandleVerifier [0x0xe56daa+2604090]
+	GetHandleVerifier [0x0xc1069a+218410]
+	GetHandleVerifier [0x0xc00ed8+154984]
+	GetHandleVerifier [0x0xc0742d+180925]
+	GetHandleVerifier [0x0xbf22b8+94536]
+	GetHandleVerifier [0x0xbf2442+94930]
+	GetHandleVerifier [0x0xbdd5ea+9338]
+	BaseThreadInitThunk [0x0x75b6fcc9+25]
+	RtlGetAppContainerNamedObjectPath [0x0x77c882ae+286]
+	RtlGetAppContainerNamedObjectPath [0x0x77c8827e+238]
+</pre></div></td></tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#16</td>
+              <td style='padding:9px 14px;font-size:13px'>S16 - Buy property type has Apartment/Flats</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#17</td>
+              <td style='padding:9px 14px;font-size:13px'>S17 - Buy property type has Flat</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#18</td>
+              <td style='padding:9px 14px;font-size:13px'>S18 - Buy size dropdown default is Any</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#19</td>
+              <td style='padding:9px 14px;font-size:13px'>S19 - Buy size dropdown has 5+ options</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#20</td>
+              <td style='padding:9px 14px;font-size:13px'>S20 - Buy city default value is Dhaka</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#21</td>
+              <td style='padding:9px 14px;font-size:13px'>S21 - Buy location field exists</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#22</td>
+              <td style='padding:9px 14px;font-size:13px'>S22 - Rent property type has Sublet</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#23</td>
+              <td style='padding:9px 14px;font-size:13px'>S23 - Tenant type has Family, Female, Male</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#24</td>
+              <td style='padding:9px 14px;font-size:13px'>S24 - Rent price min has 1 lac option</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#25</td>
+              <td style='padding:9px 14px;font-size:13px'>S25 - Can select Male in tenant type</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#26</td>
+              <td style='padding:9px 14px;font-size:13px'>S26 - Residence type has Commercial Mess, Independent Mess, Hostel</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#27</td>
+              <td style='padding:9px 14px;font-size:13px'>S27 - Room type has 2 Person in One Room</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#28</td>
+              <td style='padding:9px 14px;font-size:13px'>S28 - Room type has 4+ Person in One Room</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#29</td>
+              <td style='padding:9px 14px;font-size:13px'>S29 - Gender has Female and Male</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#30</td>
+              <td style='padding:9px 14px;font-size:13px'>S30 - Can type in characteristics textarea</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#31</td>
+              <td style='padding:9px 14px;font-size:13px'>S31 - Buy form submit goes to search-results page</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr><td colspan=3 style=padding:0_14px_10px;background:#f8d7da><div style=background:#fff;padding:8px;border-radius:4px;border:1px_solid_#ddd><pre style='font-size:11px;color:#555;margin:4px 0 0;white-space:pre-wrap'>http://127.0.0.1:8000/searching-sector/</pre></div></td></tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#32</td>
+              <td style='padding:9px 14px;font-size:13px'>S32 - URL contains category=buy after submit</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr><td colspan=3 style=padding:0_14px_10px;background:#f8d7da><div style=background:#fff;padding:8px;border-radius:4px;border:1px_solid_#ddd><pre style='font-size:11px;color:#555;margin:4px 0 0;white-space:pre-wrap'>http://127.0.0.1:8000/searching-sector/</pre></div></td></tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#33</td>
+              <td style='padding:9px 14px;font-size:13px'>S33 - Results page shows SEARCH RESULTS heading</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#34</td>
+              <td style='padding:9px 14px;font-size:13px'>S34 - Results page has Back to Search button</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#35</td>
+              <td style='padding:9px 14px;font-size:13px'>S35 - Back button returns to searching-sector page</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr><td colspan=3 style=padding:0_14px_10px;background:#f8d7da><div style=background:#fff;padding:8px;border-radius:4px;border:1px_solid_#ddd><pre style='font-size:11px;color:#555;margin:4px 0 0;white-space:pre-wrap'>http://127.0.0.1:8000/searching-sector/</pre></div></td></tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#36</td>
+              <td style='padding:9px 14px;font-size:13px'>S36 - Rent form submit goes to results with category=rent</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr><td colspan=3 style=padding:0_14px_10px;background:#f8d7da><div style=background:#fff;padding:8px;border-radius:4px;border:1px_solid_#ddd><pre style='font-size:11px;color:#555;margin:4px 0 0;white-space:pre-wrap'>http://127.0.0.1:8000/searching-sector/</pre></div></td></tr><tr style='background:#f8d7da'>
+              <td style='padding:9px 14px;font-size:13px;color:#666'>#37</td>
+              <td style='padding:9px 14px;font-size:13px'>S37 - Roommates form submit goes to results with category=roommates</td>
+              <td style='padding:9px 14px;text-align:center'>
+                <span style='background:#dc3545;color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;font-weight:bold'>FAIL</span>
+              </td>
+            </tr><tr><td colspan=3 style=padding:0_14px_10px;background:#f8d7da><div style=background:#fff;padding:8px;border-radius:4px;border:1px_solid_#ddd><pre style='font-size:11px;color:#555;margin:4px 0 0;white-space:pre-wrap'>http://127.0.0.1:8000/searching-sector/</pre></div></td></tr></tbody>
+  </table>
+  <div class="footer">StayFinder Selenium Test Suite — Searching Sector</div>
+</body>
+</html>

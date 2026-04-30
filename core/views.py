@@ -77,6 +77,10 @@ def payment_method(request):
     return render(request, 'payment_method.html')
 
 
+def bkash_process_view(request):
+    return render(request, 'bkash_process.html')
+
+
 
 
 

@@ -246,7 +246,7 @@ class SearchingSectorPageTest(TestCase):
         self.assertContains(res, 'Roommates')
 
     def test_44_page_contains_tell_us_button(self):
-       pyt res = self.client.get(reverse('searching_sector'))
+        res = self.client.get(reverse('searching_sector'))
         self.assertContains(res, 'Tell Us Your Requirement')
 
     def test_45_page_contains_manual_button(self):
@@ -465,4 +465,69 @@ class BookingSectorTests(TestCase):
     def test_default_category(self):
         form = BookingSearchForm()
         self.assertEqual(form.fields['category'].initial, 'buy')
+
+    # =========================================================
+    # NEW: PAYMENT & PROCESS LOGIC TESTS
+    # =========================================================
+    class PaymentFlowLogicTest(TestCase):
+        def setUp(self):
+            self.client = Client()
+
+        def test_75_payment_process_post_redirects(self):
+            """Test that submitting the NID form redirects to payment_method"""
+            url = reverse('payment_process')
+            # Simulate form submission
+            data = {'nid': '1234567890', 'address': 'Dhaka'}
+            response = self.client.post(url, data)
+            # 302 is the code for a redirect
+            self.assertEqual(response.status_code, 302)
+            self.assertRedirects(response, reverse('payment_method'))
+
+        def test_76_payment_method_feedback_submission(self):
+            """Test that the complaint box accepts data via POST"""
+            url = reverse('payment_method')
+            data = {'complaint': 'Excellent service!', 'rating': '5'}
+            response = self.client.post(url, data)
+            self.assertEqual(response.status_code, 200)
+            # Check if the page still loads after submission
+            self.assertContains(response, "COMPLAINT BOX")
+
+        # =========================================================
+        # NEW: PROPERTY BOUNDARY TESTS
+        # =========================================================
+        class PropertyBoundaryTest(TestCase):
+            def setUp(self):
+                self.client = Client()
+
+            def test_79_invalid_property_id_behavior(self):
+                """Check behavior when property ID is out of range (1-9)"""
+                url = reverse('property_details', args=[99])
+                response = self.client.get(url)
+                # Even if the ID is 99, the view should load but likely show empty fields
+                self.assertEqual(response.status_code, 200)
+                # Verify it doesn't show a specific hostel name
+                self.assertNotContains(response, "MOONSCAPE")
+
+        # =========================================================
+        # NEW: DATA INTEGRITY & EDGE CASE TESTS
+        # =========================================================
+        class SearchEdgeCaseTest(TestCase):
+            def setUp(self):
+                self.client = Client()
+
+            def test_77_search_with_empty_params(self):
+                """Ensure search page doesn't crash with zero data"""
+                url = reverse('search_results')
+                response = self.client.get(url, {})
+                self.assertEqual(response.status_code, 200)
+
+            def test_78_search_numeric_price_validation(self):
+                """Verify that price range in context handles numeric strings"""
+                url = reverse('search_results')
+                data = {'category': 'rent', 'price_min': '5000', 'price_max': '15000'}
+                response = self.client.get(url, data)
+                self.assertEqual(response.context['price_min'], '5000')
+                self.assertEqual(response.context['price_max'], '15000')
+
+
 

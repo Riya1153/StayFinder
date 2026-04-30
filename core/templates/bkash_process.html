@@ -1,0 +1,28 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bKash Payment Process</title>
+    <style>
+        body { background-color: #FFDADA; font-family: 'Inter', sans-serif; display: flex; justify-content: center; padding: 40px; }
+        .process-container { background: white; padding: 30px; border-radius: 15px; width: 400px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; }
+        .bkash-logo { color: #D12053; font-weight: bold; font-size: 24px; margin-bottom: 20px; }
+        .step { text-align: left; margin-bottom: 15px; font-size: 14px; color: #333; }
+        .btn-confirm { background: #D12053; color: white; border: none; padding: 12px; width: 100%; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="process-container">
+        <div class="bkash-logo">bKash Payment</div>
+        <div class="step">1. Go to your bKash Mobile Menu by dialing *247# or open the App.</div>
+        <div class="step">2. Choose "Send Money" or "Make Payment".</div>
+        <div class="step">3. Enter Merchant Number: 01XXXXXXXXX</div>
+        <div class="step">4. Enter Amount and your PIN.</div>
+        <div class="step">5. Enter Transaction ID below to verify.</div>
+        <input type="text" placeholder="Enter Transaction ID" style="width: 90%; padding: 10px; margin-top: 10px; border: 1px solid #ccc;">
+        <button class="btn-confirm">VERIFY PAYMENT</button>
+    </div>
+</body>
+</html>

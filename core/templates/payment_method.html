@@ -1,5 +1,5 @@
 {% load static %}
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -87,7 +87,7 @@
                 <input type="radio" name="pay_method" id="cash" value="cash" required>
                 <label for="cash">CASH</label>
 
-                <input type="radio" name="pay_method" id="bkash" value="bkash">
+                <input type="radio" name="pay_method" id="bkash" value="bkash" onclick="window.location.href='{% url 'bkash_process' %}'">
                 <label for="bkash">BKASH</label>
 
                 <input type="radio" name="pay_method" id="atm" value="atm">

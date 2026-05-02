@@ -44,12 +44,11 @@ urlpatterns = [
     path('password-reset/complete/', auth_views.PasswordResetCompleteView.as_view(
         template_name='password_reset_complete.html'
     ), name='password_reset_complete'),
-
-     path('bkash-process/', views.bkash_process_view, name='bkash_process'),
-
-    path('atm-process/', views.atm_process_view, name='atm_process'),
-
-    path('payment-success/', views.payment_success_view, name='payment_success'),
+    path('export-excel/', views.export_excel, name='export_excel'),
+    path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('admin-dashboard/add-house/', views.add_house_admin, name='add_house_admin'),
+    path('admin-dashboard/add-boys-hostel/', views.add_boys_hostel_admin, name='add_boys_hostel_admin'),
+    path('admin-dashboard/add-girls-hostel/', views.add_girls_hostel_admin, name='add_girls_hostel_admin'),
 ]
 
 # Static + Media

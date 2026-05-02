@@ -85,7 +85,8 @@
 
         <h2 class="title-text">IF YOU'VE AN ACCOUNT ALREADY</h2>
 
-        <form action="{% url 'dashboard' %}" method="POST">
+        <!-- IMPORTANT CHANGE -->
+        <form action="{% url 'login' %}" method="POST">
             {% csrf_token %}
 
             <input type="email" name="email" class="input-box" placeholder="ENTER YOUR EMAIL" required>

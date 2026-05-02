@@ -145,7 +145,8 @@ body{
 
 <h2 class="form-title">SIGN UP OR CREATE AN ACCOUNT</h2>
 
-<form class="signup-form" action="{% url 'dashboard' %}" method="GET">
+<form class="signup-form" action="{% url 'registration' %}" method="POST">
+    {% csrf_token %}
 
     <div class="input-group">
         <label>Name</label>

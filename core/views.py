@@ -358,4 +358,15 @@ def add_girls_hostel_admin(request):
 
     return render(request, "add_hostel_admin.html", {
         "hostel_type": "Girls Hostel"
-    })
+
+    }
+                  )
+def bkash_payment(request):
+    return render(request, 'bkash_payment.html')
+
+def atm_payment(request):
+
+    return render(request, 'atm_payment.html')
+
+def payment_success(request):
+    return render(request, 'payment_success.html')

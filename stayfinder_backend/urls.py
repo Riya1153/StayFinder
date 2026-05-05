@@ -49,6 +49,9 @@ urlpatterns = [
     path('admin-dashboard/add-house/', views.add_house_admin, name='add_house_admin'),
     path('admin-dashboard/add-boys-hostel/', views.add_boys_hostel_admin, name='add_boys_hostel_admin'),
     path('admin-dashboard/add-girls-hostel/', views.add_girls_hostel_admin, name='add_girls_hostel_admin'),
+    path('bkash_payment/', views.bkash_payment, name='bkash_payment'),
+    path('atm_payment/', views.atm_payment, name='atm_payment'),
+    path('payment-success/', views.payment_success, name='payment_success'),
 ]
 
 # Static + Media

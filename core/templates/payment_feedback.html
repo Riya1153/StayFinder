@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment & Feedback</title>
+    <style>
+        body {
+            background-color: #ffdede;
+            font-family: Arial, sans-serif;
+        }
+
+        .main-box {
+            width: 650px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #6a3dcc;
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .form-box {
+            background-color: #e9ecef;
+            margin: 25px;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        .payment-option {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .stars {
+            margin-top: 10px;
+            font-size: 30px;
+        }
+
+        .stars input {
+            display: none;
+        }
+
+        .stars label {
+            display: inline;
+            color: gray;
+            cursor: pointer;
+            font-size: 32px;
+        }
+
+        .stars input:checked ~ label {
+            color: gold;
+        }
+
+        button {
+            width: 70%;
+            margin: 25px auto 0;
+            display: block;
+            padding: 14px;
+            background-color: #005bbb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #004999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-box">
+        <div class="header">
+            PAYMENT & FEEDBACK
+        </div>
+
+        <div class="form-box">
+            <form method="POST">
+                {% csrf_token %}
+
+                <label>Payment Method</label>
+
+                <div class="payment-option">
+                    <input type="radio" name="payment_method" value="Cash"> Cash
+                </div>
+
+                <div class="payment-option">
+                    <input type="radio" name="payment_method" value="ATM"> ATM
+                </div>
+
+                <div class="payment-option">
+                    <input type="radio" name="payment_method" value="bKash"> bKash
+                </div>
+
+                <label>bKash Number</label>
+                <input type="text" name="bkash_number" placeholder="Enter bKash number">
+
+                <label>Transaction ID</label>
+                <input type="text" name="transaction_id" placeholder="Enter transaction ID">
+
+                <label>Rating</label>
+                <select name="rating">
+                    <option value="">Select Rating</option>
+                    <option value="5">⭐⭐⭐⭐⭐ 5 Star</option>
+                    <option value="4">⭐⭐⭐⭐ 4 Star</option>
+                    <option value="3">⭐⭐⭐ 3 Star</option>
+                    <option value="2">⭐⭐ 2 Star</option>
+                    <option value="1">⭐ 1 Star</option>
+                </select>
+
+                <label>Comment Optional</label>
+                <textarea name="comment" placeholder="Write your feedback here..."></textarea>
+
+                <button type="submit">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

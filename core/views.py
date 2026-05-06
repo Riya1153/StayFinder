@@ -359,3 +359,9 @@ def add_girls_hostel_admin(request):
     return render(request, "add_hostel_admin.html", {
         "hostel_type": "Girls Hostel"
     })
+
+def payment_feedback(request):
+    if request.method == "POST":
+        return render(request, 'payment_success.html')
+
+    return render(request, 'payment_feedback.html')

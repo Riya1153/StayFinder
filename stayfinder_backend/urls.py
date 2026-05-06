@@ -49,6 +49,7 @@ urlpatterns = [
     path('admin-dashboard/add-house/', views.add_house_admin, name='add_house_admin'),
     path('admin-dashboard/add-boys-hostel/', views.add_boys_hostel_admin, name='add_boys_hostel_admin'),
     path('admin-dashboard/add-girls-hostel/', views.add_girls_hostel_admin, name='add_girls_hostel_admin'),
+    path('payment-feedback/', views.payment_feedback, name='payment_feedback'),
 ]
 
 # Static + Media

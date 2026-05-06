@@ -87,10 +87,10 @@
                 <input type="radio" name="pay_method" id="cash" value="cash" required>
                 <label for="cash">CASH</label>
 
-                <input type="radio" name="pay_method" id="bkash" value="bkash" onclick="window.location.href='{% url 'bkash_process' %}'">
+                <input type="radio" name="pay_method" id="bkash" value="bkash" onclick="window.location.href='{% url 'bkash_payment' %}'">
                 <label for="bkash">BKASH</label>
 
-                <input type="radio" name="pay_method" id="atm" value="atm" onclick="window.location.href='{% url 'atm_process' %}'">
+                <input type="radio" name="pay_method" id="atm" value="atm" onclick="window.location.href='{% url 'atm_payment' %}'">
                 <label for="atm">ATM</label>
             </div>
 

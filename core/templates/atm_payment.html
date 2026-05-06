@@ -1,102 +1,203 @@
 {% load static %}
+
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>ATM/Card Payment - StayFinder</title>
+
     <style>
+
         body { background-color: #f4f7f6; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
 
+
+
         .checkout-box {
+
             background: white;
+
             padding: 40px;
+
             border-radius: 10px;
+
             width: 450px;
+
             box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+
         }
 
+
+
         .header { text-align: center; margin-bottom: 30px; }
+
         .header h2 { color: #2c3e50; margin: 0; text-transform: uppercase; letter-spacing: 1px; }
+
+
 
         .card-logos { display: flex; justify-content: center; gap: 15px; margin-top: 10px; font-size: 24px; }
 
+
+
         .input-group { margin-bottom: 20px; }
+
         .input-group label { display: block; font-size: 13px; font-weight: 600; color: #34495e; margin-bottom: 8px; }
 
+
+
         .input-group input {
+
             width: 100%;
+
             padding: 12px;
+
             border: 1px solid #dcdde1;
+
             border-radius: 6px;
+
             box-sizing: border-box;
+
             font-size: 16px;
+
         }
+
+
 
         /* This fixes the side-by-side layout for Exp and CVV */
+
         .row { display: flex; gap: 20px; }
 
+
+
         .pay-btn {
+
             background: #27ae60;
+
             color: white;
+
             border: none;
+
             padding: 15px;
+
             width: 100%;
+
             border-radius: 6px;
+
             font-weight: bold;
+
             font-size: 18px;
+
             cursor: pointer;
+
             margin-top: 10px;
+
         }
 
+
+
         .pay-btn:hover { background: #219150; }
+
         .footer-note { text-align: center; color: #7f8c8d; font-size: 12px; margin-top: 20px; }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <div class="checkout-box">
+
         <div class="header">
+
             <h2>Debit / Credit Card</h2>
+
             <div class="card-logos">💳 🏦 🛡️</div>
+
         </div>
+
+
 
         <!-- Added autocomplete="off" to stop 'sadia' from appearing automatically -->
+
         <form action="{% url 'payment_success' %}" autocomplete="off">
-            <div class="input-group">
-                <label>CARDHOLDER NAME</label>
-                <input type="text" name="cardname" placeholder="As written on card" required>
-            </div>
 
             <div class="input-group">
-                <label>CARD NUMBER</label>
-                <input type="text" name="cardnumber" placeholder="0000 0000 0000 0000" maxlength="16" required>
+
+                <label>CARDHOLDER NAME</label>
+
+                <input type="text" name="cardname" placeholder="As written on card" required>
+
             </div>
+
+
+
+            <div class="input-group">
+
+                <label>CARD NUMBER</label>
+
+                <input type="text" name="cardnumber" placeholder="0000 0000 0000 0000" maxlength="16" required>
+
+            </div>
+
+
 
             <!-- Start of side-by-side row -->
+
             <div class="row">
-                <div class="input-group" style="flex: 1;">
-                    <label>EXPIRATION</label>
-                    <input type="text"
-                           name="expiration"
-                           placeholder="MM/YY"
-                           maxlength="5"
-                           oninput="this.value = this.value.replace(/[^0-9/]/g, '')"
-                           required>
-                </div>
 
                 <div class="input-group" style="flex: 1;">
-                    <label>CVV / CVC</label>
-                    <input type="password" name="cvv" placeholder="123" maxlength="3" required>
+
+                    <label>EXPIRATION</label>
+
+                    <input type="text"
+
+                           name="expiration"
+
+                           placeholder="MM/YY"
+
+                           maxlength="5"
+
+                           oninput="this.value = this.value.replace(/[^0-9/]/g, '')"
+
+                           required>
+
                 </div>
+
+
+
+                <div class="input-group" style="flex: 1;">
+
+                    <label>CVV / CVC</label>
+
+                    <input type="password" name="cvv" placeholder="123" maxlength="3" required>
+
+                </div>
+
             </div> <!-- End of side-by-side row -->
 
+
+
             <button type="submit" class="pay-btn">PAY NOW</button>
+
         </form>
 
+
+
         <div class="footer-note">
+
             Your transaction is secured with 256-bit SSL encryption.
+
         </div>
+
     </div>
 
+
+
 </body>
+
 </html>

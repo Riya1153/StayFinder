@@ -31,6 +31,19 @@ class Hostel(models.Model):
         return self.title or "Hostel"
 
 
+class BoysHostel(Hostel):
+    class Meta:
+        proxy = True
+        verbose_name = "Boys Hostel"
+        verbose_name_plural = "Boys Hostel List"
+
+
+class GirlsHostel(Hostel):
+    class Meta:
+        proxy = True
+        verbose_name = "Girls Hostel"
+        verbose_name_plural = "Girls Hostel List"
+
 class House(models.Model):
     title = models.CharField(max_length=200, blank=True)
     location = models.CharField(max_length=255, blank=True)

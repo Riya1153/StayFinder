@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib.admin.views.decorators import staff_member_required
 from .models import (
     Hostel, Owner, House,
     UserProfile, BookingRequest, RequirementAlert,
@@ -50,6 +51,7 @@ def dashboard(request):
     return render(request, 'dashboard.html')
 
 
+@staff_member_required
 def admin_dashboard(request):
     total_users = Owner.objects.count()
     total_hostels = Hostel.objects.count()
@@ -151,8 +153,8 @@ def payment_process(request):
             name=request.POST.get("name") or "",
             phone_number=request.POST.get("phone_number") or "",
             email=request.POST.get("email") or "",
-            check_in_date=request.POST.get("check_in_date") or None,
-            number_of_roommates=request.POST.get("number_of_roommates") or 0,
+            check_in_date=request.POST.get("check_in_date") or "",
+            number_of_roommates=request.POST.get("number_of_roommates") or "",
             stay_duration=request.POST.get("stay_duration") or "",
             address=request.POST.get("address") or "",
             parent_phone_number=request.POST.get("parent_phone_number") or "",
@@ -167,17 +169,37 @@ def payment_process(request):
 
 
 def payment_method(request):
-    if request.method == 'POST':
+    if request.method == "POST":
+        method = request.POST.get("payment_method") or ""
+
+        if method == "bkash":
+            return redirect("bkash_payment")
+
+        elif method == "atm":
+            return redirect("atm_payment")
+
+        elif method == "cash":
+            return redirect("payment_feedback")
+
+        else:
+            return redirect("payment_feedback")
+
+    return render(request, "payment_method.html")
+
+
+def payment_feedback(request):
+    if request.method == "POST":
         PaymentFeedback.objects.create(
             payment_method=request.POST.get("payment_method") or "",
-            rating=request.POST.get("rating") or 0,
+            rating=request.POST.get("rating") or "",
             complaint=request.POST.get("complaint") or ""
         )
-        return redirect('search_page')
+        return redirect("payment_success")
 
-    return render(request, 'payment_method.html')
+    return render(request, "payment_feedback.html")
 
 
+@staff_member_required
 def export_excel(request):
     wb = openpyxl.Workbook()
 
@@ -226,7 +248,11 @@ def export_excel(request):
         ])
 
     ws5 = wb.create_sheet(title="Booking Requests")
-    ws5.append(['For', 'Type', 'Size', 'City', 'Location', 'Tenant Type', 'Rent Min', 'Rent Max', 'Room Type', 'Gender', 'Roommate'])
+    ws5.append([
+        'For', 'Type', 'Size', 'City', 'Location',
+        'Tenant Type', 'Rent Min', 'Rent Max',
+        'Room Type', 'Gender', 'Roommate'
+    ])
 
     for b in BookingRequest.objects.all():
         ws5.append([
@@ -255,7 +281,12 @@ def export_excel(request):
         ])
 
     ws7 = wb.create_sheet(title="Applications")
-    ws7.append(['Name', 'Phone', 'Email', 'Check In Date', 'Roommates', 'Stay Duration', 'Address', 'Parent Phone', 'NID/Passport', 'Emergency Contact', 'Copy ID', 'Draft Email'])
+    ws7.append([
+        'Name', 'Phone', 'Email', 'Check In Date',
+        'Roommates', 'Stay Duration', 'Address',
+        'Parent Phone', 'NID/Passport',
+        'Emergency Contact', 'Copy ID', 'Draft Email'
+    ])
 
     for a in ApplicationForm.objects.all():
         ws7.append([
@@ -292,6 +323,7 @@ def export_excel(request):
     return response
 
 
+@staff_member_required
 def add_house_admin(request):
     if request.method == "POST":
         owner = Owner.objects.create(
@@ -313,6 +345,7 @@ def add_house_admin(request):
     return render(request, "add_house_admin.html")
 
 
+@staff_member_required
 def add_boys_hostel_admin(request):
     if request.method == "POST":
         owner = Owner.objects.create(
@@ -337,6 +370,7 @@ def add_boys_hostel_admin(request):
     })
 
 
+@staff_member_required
 def add_girls_hostel_admin(request):
     if request.method == "POST":
         owner = Owner.objects.create(
@@ -359,3 +393,15 @@ def add_girls_hostel_admin(request):
     return render(request, "add_hostel_admin.html", {
         "hostel_type": "Girls Hostel"
     })
+
+
+def bkash_payment(request):
+    return render(request, 'bkash_payment.html')
+
+
+def atm_payment(request):
+    return render(request, 'atm_payment.html')
+
+
+def payment_success(request):
+    return render(request, 'payment_success.html')

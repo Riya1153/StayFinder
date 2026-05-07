@@ -14,14 +14,14 @@ class HouseAdmin(admin.ModelAdmin):
 
 @admin.register(Hostel)
 class HostelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'location', 'price_per_month', 'gender', 'stars', 'owner')
-    list_filter = ('gender', 'stars')
+    list_display = ('title', 'location', 'price_per_month', 'gender',  'owner')
+    list_filter = ('gender', )
     search_fields = ('title', 'location')
 
 
 @admin.register(BoysHostel)
 class BoysHostelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'location', 'price_per_month', 'stars', 'owner')
+    list_display = ('title', 'location', 'price_per_month',  'owner')
     search_fields = ('title', 'location')
 
     def get_queryset(self, request):
@@ -35,7 +35,7 @@ class BoysHostelAdmin(admin.ModelAdmin):
 
 @admin.register(GirlsHostel)
 class GirlsHostelAdmin(admin.ModelAdmin):
-    list_display = ('title', 'location', 'price_per_month', 'stars', 'owner')
+    list_display = ('title', 'location', 'price_per_month',  'owner')
     search_fields = ('title', 'location')
 
     def get_queryset(self, request):

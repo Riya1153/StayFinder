@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Girls' Hostel List</title>
+    <title>Boy's Hostel List</title>
     <style>
         body {
             background-color: #fceeee; /* Matches the peach/pink theme */
@@ -40,7 +40,7 @@
 
         .hostel-card {
             background-color: white;
-            border-radius: 25px; /* Matches your premium card design */
+            border-radius: 25px;
             padding: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.05);
             text-align: center;
@@ -57,7 +57,7 @@
             position: absolute;
             top: 10px;
             left: 10px;
-            background-color: #28a745; /* Green badge */
+            background-color: #28a745;
             color: white;
             font-size: 10px;
             padding: 4px 10px;
@@ -88,6 +88,11 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .details-btn:hover {
+            background-color: #cccccc;
         }
     </style>
 </head>
@@ -98,39 +103,34 @@
     <h1 class="main-title">BOY'S HOSTEL LIST</h1>
 
     <div class="hostel-grid">
+        {% for hostel in hostels %}
         <div class="hostel-card">
             <div class="image-wrapper">
-                <div class="price-tag">CALL FOR PRICE</div>
-                <img src="../../media/hostels/Unique_Boys_hostel.png" alt="Unique_Boys">
+                <div class="price-tag">
+                    {% if hostel.price_per_month > 0 %}
+                        ${{ hostel.price_per_month }} / Month
+                    {% else %}
+                        CALL FOR PRICE
+                    {% endif %}
+                </div>
+
+                {% if hostel.image %}
+                    <img src="{{ hostel.image.url }}" alt="{{ hostel.title }}">
+                {% else %}
+                    <img src="https://via.placeholder.com/180" alt="No Image">
+                {% endif %}
             </div>
-            <h4>UNIQUE BOY'S HOSTEL</h4>
-            <a href="{% url 'property_details' 4 %}" style="text-decoration: none;">
+
+            <h4>{{ hostel.title|upper }}</h4>
+
+            <a href="{% url 'property_details' hostel.id %}" style="text-decoration: none;">
                <button class="details-btn">DETAILS</button>
             </a>
         </div>
-
-        <div class="hostel-card">
-            <div class="image-wrapper">
-                <div class="price-tag">CALL FOR PRICE</div>
-                <img src="../../media/hostels/boys_stay.png" alt="Boys Stay">
-            </div>
-            <h4>BOYS STAY</h4>
-            <a href="{% url 'property_details' 5 %}" style="text-decoration: none;">
-                 <button class="details-btn">DETAILS</button>
-            </a>
+        {% empty %}
+        <p>No hostels found in the database. Please add some in the Admin panel.</p>
+        {% endfor %}
         </div>
-
-        <div class="hostel-card">
-            <div class="image-wrapper">
-                <div class="price-tag">CALL FOR PRICE</div>
-                <img src="../../media/hostels/Ghar_Aangan_Hostel.png" alt="Ghar Aangan">
-            </div>
-            <h4>GHAR ANAGAN HOSTEL</h4>
-            <a href="{% url 'property_details' 6 %}" style="text-decoration: none;">
-               <button class="details-btn">DETAILS</button>
-            </a>
-        </div>
-    </div>
 </div>
 
 </body>

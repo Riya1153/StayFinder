@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Property Details - StayFinder</title>
+    <title>{{ hostel.title }} - Details</title>
     <style>
-        /* Your original styles remain exactly the same */
+        /* This is the CSS that was missing */
         body { background-color: #FFDADA; font-family: 'Inter', sans-serif; margin: 0; padding: 40px; }
         .back-btn { background-color: #D9D9D9; padding: 8px 15px; text-decoration: none; color: black; font-weight: bold; font-size: 14px; border-radius: 5px; display: inline-block; margin-bottom: 20px; }
         .details-frame { background-color: white; border-radius: 30px; padding: 40px; box-shadow: 0px 4px 15px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; }
@@ -14,7 +14,7 @@
         .owner-info { font-size: 16px; color: #555; margin-top: 10px; }
         .section-title { font-size: 20px; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; color: #333; }
         .feature-list { list-style: none; padding: 0; }
-        .feature-item { display: flex; align-items: center; font-size: 16px; margin-bottom: 12px; color: #444; }
+        .feature-item { display: flex; align-items: flex-start; font-size: 16px; margin-bottom: 12px; color: #444; line-height: 1.5; }
         .feature-item::before { content: "✔"; margin-right: 15px; color: #000; font-weight: bold; }
         .book-now-btn { background-color: #D9D9D9; border: none; padding: 18px; width: 100%; border-radius: 10px; font-weight: bold; font-size: 16px; text-transform: uppercase; cursor: pointer; margin-top: 30px; transition: 0.3s; }
         .book-now-btn:hover { background-color: #c0c0c0; }
@@ -26,164 +26,41 @@
 
     <div class="details-frame">
         <div class="header-section">
-            {% if id == 1 %}
-                <h1 class="property-title">MOONSCAPE</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> ARAFAT DEVELOPERS & BUILDERS</p>
-                    <p><strong>LOCATION:</strong>Block D, Road 12, Bashundhara R/A, Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Single/Double Sharing((with Attached Balcony))</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 12,500 </p>
-                </div>
-            {% elif id == 2 %}
-                <h1 class="property-title">ARKAM KPLOTAN</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> ARKAM BUILDERS LIMITED</p>
-                    <p><strong>LOCATION:</strong> Road 18, Sector 4,Uttara , Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> 3-Bed Sharing (Spacious Room with Individual Wardrobes)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 8,500</p>
-                </div>
-            {% elif id == 3 %}
-                <h1 class="property-title">NAGAR CHAYANEER</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> NAGAR REAL ESTATE GROUP</p>
-                    <p><strong>LOCATION:</strong>Main Road, Dhanmondi 27 ((Near Eye Hospital), Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Executive Single Room (Full Privacy + AC & Work Desk)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 18,000 (AC included)</p>
-                </div>
-            {% elif id == 4 %}
-                <h1 class="property-title">UNIQUE BOY'S HOSTEL</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> UNIQUE HOSTEL MANAGEMENT</p>
-                    <p><strong>LOCATION:</strong>Green Road, Farmgate(Behind Ananda Cinema Hall), Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> 4-Bed Dormitory (Bunk Bed Style with Shared Locker)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 5,500 (Meal plan separate)</p>
-                </div>
-            {% elif id == 5 %}
-                <h1 class="property-title">BOYS-STAY</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> STAY SOLUTIONS LTD</p>
-                    <p><strong>LOCATION:</strong>Section 2, Block H (Near National Stadium), Mirpur 2, Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Double Sharing (Side-by-side Single Beds)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 7,500</p>
-                </div>
-            {% elif id == 6 %}
-                <h1 class="property-title">GHAR-AANGAN HOSTEL</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> DHAKA LIVING CO.</p>
-                    <p><strong>LOCATION:</strong> Block I, Near Apollo Gate, Bashundhara R/A, Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Single/Triple Sharing (Flexible Layout with Large Windows)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 10,000</p>
-                </div>
-            {% elif id == 7 %}
-                <h1 class="property-title">MATRICHAYA GIRL'S HOSTEL</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> MATRICHAYA PROPERTIES</p>
-                    <p><strong>LOCATION:</strong> Government Colony Road, Azimpur, Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Single Room (Female only)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 11,000</p>
-                </div>
-            {% elif id == 8 %}
-                <h1 class="property-title">COZY HOMES</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> COZY LIVING GROUP</p>
-                    <p><strong>LOCATION:</strong> Road 11, Block F, Banani, Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Executive Service Apartment (Fully Furnished with Smart TV)</p>
-                    <p><strong>MONTHLY RENT:</strong> BDT 25,000 (Inclusive of Housekeeping)</p>
+            <h1 class="property-title">{{ hostel.title|upper }}</h1>
 
-                </div>
-            {% elif id == 9 %}
-                <h1 class="property-title">ECO-STAY</h1>
-                <div class="owner-info">
-                    <p><strong>OWNER DETAILS:</strong> GREEN REAL ESTATE</p>
-                    <p><strong>LOCATION:</strong>Avenue 1(Near Niketan Gate), Gulshan 1, Dhaka</p>
-                    <p><strong>ROOM TYPE:</strong> Standard Double Sharing Eco-Suite with Natural Ventilation) </p>
-                   <p><strong>MONTHLY RENT:</strong> BDT 15,500 (Inclusive of Utility)</p>
-                </div>
-            {% endif %}
+            <div class="owner-info">
+                <p><strong>OWNER DETAILS:</strong> {{ hostel.owner.name|default:"Management" }}</p>
+                <p><strong>LOCATION:</strong> {{ hostel.location }}</p>
+                <p><strong>ROOM TYPE:</strong> {{ hostel.room_details }}</p>
+                <p><strong>MONTHLY RENT:</strong> BDT {{ hostel.price_per_month }}</p>
+            </div>
         </div>
 
         <div class="content-section">
             <h3 class="section-title">FEATURES & FACILITIES, MEALS</h3>
             <ul class="feature-list">
-                {% if id == 1 %}
-                    <li class="feature-item">High-speed WiFi Connection</li>
-                    <li class="feature-item">24/7 Security (CCTV)</li>
-                    <li class="feature-item">Electricity Backup (Generator)</li>
-                    <li class="feature-item">Clean Drinking Water Service</li>
-                    <li class="feature-item">Attached/Common Bathroom</li>
-                {% elif id == 2 %}
-                    <li class="feature-item">Fully Furnished Rooms</li>
-                    <li class="feature-item">Kitchen Access for Students</li>
-                    <li class="feature-item">Daily Room Cleaning Service</li>
-                    <li class="feature-item">Rooftop Garden Access</li>
-                    <li class="feature-item">Laundry Facilities</li>
-                {% elif id == 3 %}
-                    <li class="feature-item">Individual Study Table & Chair</li>
-                    <li class="feature-item">Air Conditioned (AC) Rooms Available</li>
-                    <li class="feature-item">24-hour Emergency Lift Rescue Service</li>
-                    <li class="feature-item">Gym and Exercise Area</li>
-                    <li class="feature-item">Fire Safety Management</li>
 
-                {% elif id == 4 %}
-            <!-- 3. UNIQUE BOY'S HOSTEL (Farmgate) -->
-            <li class="feature-item"><strong>Meal Plan:</strong> 2-times daily (Standard Lunch & Dinner included in rent)</li>
-            <li class="feature-item"><strong>Menu:</strong> Khichuri/Roti for Breakfast; Rice, Vorta, and Fish/Meat for Lunch</li>
-            <li class="feature-item"><strong>Security:</strong> Biometric (Fingerprint) Attendance System for Entry/Exit</li>
-            <li class="feature-item"><strong>Safety:</strong> 24/7 CCTV Monitoring in common areas and corridors</li>
-
-        {% elif id == 5 %}
-            <!-- 4. BOYS-STAY (Mirpur) -->
-            <li class="feature-item"><strong>Meal Plan:</strong> Flexible Token System (Pay only for the meals you eat)</li>
-            <li class="feature-item"><strong>Menu:</strong> Choice of Continental Breakfast or Traditional Bengali Meals</li>
-            <li class="feature-item"><strong>Security:</strong> RFID Card Access for main gate and individual room lockers</li>
-            <li class="feature-item"><strong>Safety:</strong> Professional night guards and emergency alarm system</li>
-            <li class="feature-item"><strong>Service:</strong> Steam ironing and laundry service included in security fee</li>
-
-        {% elif id == 6 %}
-            <!-- 5. GHAR-AANGAN HOSTEL (Bashundhara) -->
-            <li class="feature-item"><strong>Meal Plan:</strong> Health-focused "Home Style" cooking (Low oil/salt)</li>
-            <li class="feature-item"><strong>Menu:</strong> Fresh seasonal greens, small fish, and handmade Roti</li>
-            <li class="feature-item"><strong>Security:</strong> Smart Mobile-App based gate opening system for residents</li>
-            <li class="feature-item"><strong>Safety:</strong> 24/7 On-call security supervisor and fire extinguisher on every floor</li>
-            <li class="feature-item"><strong>Policy:</strong> Strict silence policy in the reading room to ensure study environment</li>
-
-            {% elif id == 7 %}
-            <!-- 6. MATRICHAYA GIRL'S HOSTEL (Azimpur) -->
-            <li class="feature-item"><strong>Meal Plan:</strong> Full 3-times Diet (Hygienic Kitchen run by female staff)</li>
-            <li class="feature-item"><strong>Menu:</strong>  Balanced Fish/Meat (Lunch/Dinner), plus Fruit/Milk</li>
-            <li class="feature-item"><strong>Security:</strong> 24/7 Female Warden on-site and strict visitor entry logbook</li>
-            <li class="feature-item"><strong>Safety:</strong> High-boundary walls with electric fencing and emergency SOS buttons</li>
-            <li class="feature-item"><strong>Service:</strong> Dedicated female support staff for laundry and housekeeping</li>
-
-        {% elif id == 8 %}
-            <!-- COZY HOMES (Banani) -->
-            <li class="feature-item"><strong>Meal Plan:</strong> Self-Catering (Private Kitchenette with Induction & Microwave)</li>
-            <li class="feature-item"><strong>Service:</strong> Optional daily meal delivery from premium cloud kitchens</li>
-            <li class="feature-item"><strong>Security:</strong> Smart Key Card access and 24/7 Elite Security Force guards</li>
-            <li class="feature-item"><strong>Safety:</strong> Advanced Smoke Detectors and Automatic Fire Sprinkler System</li>
-            <li class="feature-item"><strong>Parking:</strong> Secured basement parking with plate-recognition cameras</li>
-
-        {% elif id == 9 %}
-            <!-- ECO-STAY (Gulshan) -->
-            <li class="feature-item"><strong>Meal Plan:</strong> Organic Farm-to-Table (Freshly sourced from local green farms)</li>
-            <li class="feature-item"><strong>Menu:</strong> Organic vegetables, Desi Chicken, and complimentary Herbal Tea</li>
-            <li class="feature-item"><strong>Security:</strong> 24/7 Human security combined with AI-based facial recognition entry</li>
-            <li class="feature-item"><strong>Safety:</strong> Earthquake-resistant building design and 24/7 medical kit access</li>
-            <li class="feature-item"><strong>Green Tech:</strong> Solar-powered security lighting for the entire building perimeter</li>
-
-
-
+                {% if hostel.meal_plan %}
+                    <li class="feature-item">
+                        <strong>Meal Plan & Menu:</strong><br>
+                        {{ hostel.meal_plan|linebreaksbr }}
+                    </li>
                 {% endif %}
+
+                {% if hostel.facilities_list %}
+                    <li class="feature-item">
+                        <strong>Facilities & Services:</strong><br>
+                        {{ hostel.facilities_list|linebreaksbr }}
+                    </li>
+                {% endif %}
+
             </ul>
         </div>
 
         <a href="{% url 'payment_process' %}" style="text-decoration: none;">
-      <button class="book-now-btn">
-        BOOK NOW
-    </button>
-    </a>
-
-
+            <button class="book-now-btn">BOOK NOW</button>
+        </a>
+    </div>
 
 </body>
 </html>

@@ -17,12 +17,13 @@ class Hostel(models.Model):
     location = models.CharField(max_length=255, blank=True)
     price_per_month = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
-    stars = models.IntegerField(default=5)
 
-    has_wifi = models.BooleanField(default=True)
-    has_cctv = models.BooleanField(default=True)
-    has_food = models.BooleanField(default=False)
-    has_cleaning = models.BooleanField(default=True)
+    room_details = models.CharField(max_length=255, blank=True, null=True,
+                                    help_text="e.g. 3-Bed Sharing (Spacious Room)")
+    meal_plan = models.TextField(blank=True, null=True, help_text="Describe the meal system and menu")
+    facilities_list = models.TextField(blank=True, null=True, help_text="Enter other facilities (one per line)")
+
+
 
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='hostels/', null=True, blank=True)

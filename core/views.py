@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from .models import (
@@ -93,11 +93,18 @@ def hostel_list(request):
 
 
 def property_details(request, property_id):
-    return render(request, 'property_details.html', {'id': property_id})
+
+    hostel = get_object_or_404(Hostel, id=property_id)
+
+    return render(request, 'property_details.html', {'hostel': hostel})
 
 
 def boys_hostel_view(request):
-    return render(request, 'boys_hostel.html')
+
+    hostels = Hostel.objects.filter(gender='B')
+
+
+    return render(request, 'boys_hostel.html', {'hostels': hostels})
 
 
 def girls_hostel_view(request):

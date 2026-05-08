@@ -53,7 +53,10 @@ urlpatterns = [
     path('bkash_payment/', views.bkash_payment, name='bkash_payment'),
     path('atm_payment/', views.atm_payment, name='atm_payment'),
     path('payment-success/', views.payment_success, name='payment_success'),
+    path('logout/', views.logout_view, name='logout'),
+
 ]
+
 
 # Static + Media
 if settings.DEBUG:

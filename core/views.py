@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseForbidden
 from django.contrib.auth.models import User
 from .models import Owner, UserProfile
 from django.contrib.auth import authenticate, login
+from .models import House
 
 from .models import (
     Hostel, Owner, House,
@@ -154,14 +155,24 @@ def add_hostel(request):
 
 
 def hostel_list(request):
-    return render(request, 'hostel_list.html')
+    # This fetches all Houses you added in Django Admin
+    all_houses = House.objects.all()
+
+    return render(request, 'hostel_list.html', {'houses': all_houses})
 
 
 def property_details(request, property_id):
+    # First, try to find a House with this ID
+    property_obj = House.objects.filter(id=property_id).first()
 
-    hostel = get_object_or_404(Hostel, id=property_id)
+    # If it's not a House, try to find it in the Hostel table
+    if not property_obj:
+        property_obj = get_object_or_404(Hostel, id=property_id)
 
-    return render(request, 'property_details.html', {'hostel': hostel})
+    # We use 'property' as the variable name to work with your new HTML
+    return render(request, 'property_details.html', {'property': property_obj})
+
+
 
 
 def boys_hostel_view(request):
@@ -409,7 +420,8 @@ def add_house_admin(request):
             location=request.POST.get("location") or "",
             rent=request.POST.get("rent") or 0,
             rooms=request.POST.get("rooms") or 1,
-            owner=owner
+            owner=owner,
+            image = request.FILES.get("image")
         )
 
         return redirect("admin_dashboard")
@@ -477,3 +489,4 @@ def atm_payment(request):
 
 def payment_success(request):
     return render(request, 'payment_success.html')
+

@@ -50,6 +50,7 @@ class House(models.Model):
     rooms = models.IntegerField(default=1)
     owner = models.ForeignKey(Owner, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='houses/', null=True, blank=True)
+    facilities = models.TextField(help_text="Enter facilities separated by commas", blank=True, null=True)
 
     def __str__(self):
         return self.title or "House"

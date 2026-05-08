@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ hostel.title }} - Details</title>
+    <title>{{ property.title }} - Details</title>
     <style>
-        /* This is the CSS that was missing */
         body { background-color: #FFDADA; font-family: 'Inter', sans-serif; margin: 0; padding: 40px; }
         .back-btn { background-color: #D9D9D9; padding: 8px 15px; text-decoration: none; color: black; font-weight: bold; font-size: 14px; border-radius: 5px; display: inline-block; margin-bottom: 20px; }
         .details-frame { background-color: white; border-radius: 30px; padding: 40px; box-shadow: 0px 4px 15px rgba(0,0,0,0.1); max-width: 800px; margin: 0 auto; }
@@ -26,38 +25,61 @@
 
     <div class="details-frame">
         <div class="header-section">
-            <h1 class="property-title">{{ hostel.title|upper }}</h1>
+            <h1 class="property-title">{{ property.title|upper }}</h1>
 
             <div class="owner-info">
-                <p><strong>OWNER DETAILS:</strong> {{ hostel.owner.name|default:"Management" }}</p>
-                <p><strong>LOCATION:</strong> {{ hostel.location }}</p>
-                <p><strong>ROOM TYPE:</strong> {{ hostel.room_details }}</p>
-                <p><strong>MONTHLY RENT:</strong> BDT {{ hostel.price_per_month }}</p>
+                <!-- Displays owner info dynamically -->
+    >            <p><strong>OWNER DETAILS:</strong> {{ property.owner.name|default:"Management" }}</p>
+                <p><strong>LOCATION:</strong> {{ property.location }}</p>
+
+                <!-- Logic to show House Rooms or Hostel Room Type -->
+                {% if property.rooms %}
+                    <p><strong>TOTAL ROOMS:</strong> {{ property.rooms }}</p>
+                {% else %}
+                    <p><strong>ROOM TYPE:</strong> {{ property.room_details }}</p>
+                {% endif %}
+
+                {% if property.rent %}
+
+                   <p><strong>MONTHLY RENT:</strong> BDT {{ property.rent }}</p>
+              {% else %}
+                 <p><strong>MONTHLY RENT:</strong> BDT {{ property.price_per_month }}</p>
+             {% endif %}
             </div>
         </div>
 
         <div class="content-section">
-            <h3 class="section-title">FEATURES & FACILITIES, MEALS</h3>
+            <h3 class="section-title">FEATURES & FACILITIES</h3>
             <ul class="feature-list">
 
-                {% if hostel.meal_plan %}
+                <!-- Hostel-specific Meal Plan -->
+                {% if property.meal_plan %}
                     <li class="feature-item">
                         <strong>Meal Plan & Menu:</strong><br>
-                        {{ hostel.meal_plan|linebreaksbr }}
+                        {{ property.meal_plan|linebreaksbr }}
                     </li>
                 {% endif %}
 
-                {% if hostel.facilities_list %}
+                <!-- Hostel-specific Facilities -->
+                {% if property.facilities_list %}
                     <li class="feature-item">
-                        <strong>Facilities & Services:</strong><br>
-                        {{ hostel.facilities_list|linebreaksbr }}
+                        <strong>Hostel Services:</strong><br>
+                        {{ property.facilities_list|linebreaksbr }}
+                    </li>
+                {% endif %}
+
+                <!-- New House-specific Facilities field -->
+                {% if property.facilities %}
+                    <li class="feature-item">
+                        <strong>House Facilities:</strong><br>
+                        {{ property.facilities|linebreaksbr }}
                     </li>
                 {% endif %}
 
             </ul>
         </div>
 
-        <a href="{% url 'payment_process' %}" style="text-decoration: none;">
+        <a href="{% url 'payment_process' %}?property_id={{ property.id }}" style="text-decoration: none;">
             <button class="book-now-btn">BOOK NOW</button>
         </a>
     </div>

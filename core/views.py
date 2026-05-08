@@ -19,9 +19,10 @@ def registration(request):
         Owner.objects.create(
             name=request.POST.get('name') or "",
             phone=request.POST.get('phone') or "",
-            email=request.POST.get('email') or ""
+            email=request.POST.get('email') or "",
+            password = request.POST.get('password') or ""
         )
-        return redirect('dashboard')
+        return redirect('login_view')
 
     return render(request, 'registration.html')
 
@@ -29,10 +30,18 @@ def registration(request):
 def login_view(request):
     if request.method == "POST":
         email = request.POST.get("email")
-        user = Owner.objects.filter(email=email).first()
+        password = request.POST.get("password")
+
+
+        user = Owner.objects.filter(email=email, password=password).first()
 
         if user:
+
+            request.session['owner_id'] = user.id
             return redirect('dashboard')
+        else:
+
+            return HttpResponse("Invalid email or password. Please try again.")
 
     return render(request, 'login.html')
 

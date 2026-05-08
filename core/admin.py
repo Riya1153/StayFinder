@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Owner, Hostel, House, BoysHostel, GirlsHostel
+from .models import Owner, Hostel, House, BoysHostel, GirlsHostel,Student
 
 
 @admin.register(Owner)
@@ -45,3 +45,9 @@ class GirlsHostelAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         obj.gender = 'G'
         super().save_model(request, obj, form, change)
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    # This adds the columns to your admin list view
+    list_display = ('name', 'email', 'phone', 'password')
+

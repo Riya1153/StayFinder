@@ -1,233 +1,68 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StayFinder Dashboard</title>
-
     <style>
+        /* Keeping your existing styles */
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #fdf0e6; font-family: 'Segoe UI', sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        .container { display: flex; background: white; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); width: 100%; max-width: 1150px; height: 85vh; min-height: 650px; overflow: hidden; }
+        .dashboard-card { flex: 1; padding: 35px; min-width: 400px; display: flex; flex-direction: column; background: white; z-index: 2; overflow-y: auto; }
+        .header { background: #fff5eb; color: #b07d62; padding: 12px; text-align: center; border-radius: 10px; font-weight: 800; margin-bottom: 18px; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
 
-        body {
-            background: #fdf0e6;
-            font-family: 'Segoe UI', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
+        /* Profile Section Styling */
+        .profile-section { text-align: center; margin-bottom: 20px; }
+        .profile-section img { width: 95px; height: 95px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .set-picture-btn { background: #e69150; border: none; padding: 8px 20px; margin-top: 10px; border-radius: 8px; color: white; font-weight: bold; font-size: 12px; cursor: pointer; }
 
-        .container {
-            display: flex;
-            background: white;
-            border-radius: 30px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 1150px;
-            height: 85vh;
-            min-height: 650px;
-            overflow: hidden;
-        }
+        /* Form Styling */
+        label { font-size: 11px; font-weight: 800; color: #444; margin-top: 12px; display: block; text-transform: uppercase; }
+        input { width: 100%; background: #f8f8f8; padding: 12px; border-radius: 10px; margin-top: 5px; border: 1px solid #eee; outline: none; font-size: 14px; color: #333; }
+        .save-btn { width: 100%; margin-top: 25px; padding: 15px; background: #e69150; border: none; border-radius: 12px; color: white; font-weight: bold; font-size: 16px; cursor: pointer; text-transform: uppercase; }
 
-        .dashboard-card {
-            flex: 1;
-            padding: 35px;
-            min-width: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            background: white;
-            z-index: 2;
-        }
-
-        .header {
-            background: #fff5eb;
-            color: #b07d62;
-            padding: 12px;
-            text-align: center;
-            border-radius: 10px;
-            font-weight: 800;
-            margin-bottom: 18px;
-            font-size: 14px;
-            letter-spacing: 1px;
-        }
-
-        .admin-btn {
-            width: 100%;
-            margin-bottom: 18px;
-            padding: 12px;
-            background: #6a1b9a;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .profile {
-            text-align: center;
-            margin-bottom: 18px;
-        }
-
-        .profile img {
-            width: 95px;
-            height: 95px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .profile button {
-            background: #e69150;
-            border: none;
-            padding: 8px 20px;
-            margin-top: 10px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            font-size: 12px;
-            cursor: pointer;
-        }
-
-        .label {
-            font-size: 11px;
-            font-weight: 800;
-            color: #444;
-            margin-top: 12px;
-            display: block;
-            text-transform: uppercase;
-        }
-
-        .input-box {
-            background: #f8f8f8;
-            padding: 12px;
-            border-radius: 10px;
-            margin-top: 5px;
-            border: 1px solid #eee;
-        }
-
-        .input-box input {
-            width: 100%;
-            border: none;
-            background: transparent;
-            outline: none;
-            font-size: 14px;
-            color: #333;
-        }
-
-        .save-btn {
-            width: 100%;
-            margin-top: 25px;
-            padding: 15px;
-            background: #e69150;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(230,145,80,0.3);
-            text-transform: uppercase;
-        }
-
-        .skip-btn {
-            display: block;
-            width: 100%;
-            margin-top: 12px;
-            padding: 15px;
-            background: #6a1b9a;
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .right-side {
-            flex: 1.8;
-            position: relative;
-        }
-
-        .right-side img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        @media (max-width: 950px) {
-            .container {
-                flex-direction: column;
-                height: auto;
-            }
-
-            .right-side {
-                height: 350px;
-                order: -1;
-            }
-
-            .dashboard-card {
-                min-width: 100%;
-            }
-        }
+        .right-side { flex: 1.8; }
+        .right-side img { width: 100%; height: 100%; object-fit: cover; }
     </style>
 </head>
-
 <body>
 
 <div class="container">
     <div class="dashboard-card">
-        <div class="header">PERSONAL DASHBOARD</div>
+        <div class="header">Personal Dashboard</div>
 
-        <a href="{% url 'admin_dashboard' %}" style="text-decoration:none;">
-            <button type="button" class="admin-btn">ADMIN DASHBOARD</button>
-        </a>
+        {% if show_admin_btn %}
+        <div style="margin-bottom: 20px;">
+            <a href="{% url 'admin_dashboard' %}"
+               style="background-color: #6a1b9a; color: white; padding: 15px; display: block; text-align: center; text-decoration: none; border-radius: 12px; font-weight: bold; text-transform: uppercase; font-size: 14px;">
+                ADMIN DASHBOARD
+            </a>
+        </div>
+        {% endif %}
 
-        <form method="POST" enctype="multipart/form-data" action=".">
+        <div class="profile-section">
+            <img id="preview" src="{{ user_data.profile_pic.url|default:'/static/images/arkam.png' }}" alt="Profile">
+            <br>
+            <input type="file" id="upload" name="profile_image" hidden accept="image/*">
+            <button type="button" class="set-picture-btn" onclick="document.getElementById('upload').click()">SET PICTURE</button>
+        </div>
+
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
-            <div class="profile">
-                <img id="preview" src="{% static 'images/arkam.png' %}" alt="profile">
-                <br>
-                <input type="file" id="upload" name="profile_image" hidden accept="image/*">
-                <button type="button" onclick="document.getElementById('upload').click()">SET PICTURE</button>
-            </div>
+            <label>NAME</label>
+            <input type="text" name="full_name" placeholder="Enter Your Name" value="{{ user_data.name|default:'' }}">
 
-            <label class="label">Name</label>
-            <div class="input-box">
-                <input type="text" name="full_name" placeholder="Enter Your Name">
-            </div>
+            <label>EMAIL</label>
+            <input type="email" name="email" value="{{ request.user.email }}" readonly>
 
-            <label class="label">Email</label>
-            <div class="input-box">
-                <input type="email" name="email" placeholder="abc@example.com">
-            </div>
-
-            <label class="label">Contact Number</label>
-            <div class="input-box">
-                <input type="text" name="phone" placeholder="01XXXXXXXXX">
-            </div>
-
-            <label class="label">Home Address</label>
-            <div class="input-box">
-                <input type="text" name="address" placeholder="Current Address">
-            </div>
-
-            <label class="label">Language</label>
-            <div class="input-box">
-                <input type="text" name="language" placeholder="ENGLISH / BANGLA">
-            </div>
+            <label>CONTACT NUMBER</label>
+            <input type="text" name="phone" placeholder="01XXXXXXXXX" value="{{ user_data.phone|default:'' }}">
 
             <button type="submit" class="save-btn">SAVE</button>
         </form>
-
-        <a href="{% url 'search_page' %}" class="skip-btn">SKIP & SEARCH</a>
     </div>
 
     <div class="right-side">
@@ -236,6 +71,7 @@
 </div>
 
 <script>
+    // Preview image before upload
     document.getElementById("upload").onchange = function(event) {
         let reader = new FileReader();
         reader.onload = function() {

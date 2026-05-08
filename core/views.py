@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponse,HttpResponseForbidden
+from django.contrib.auth.models import User
+from .models import Owner, UserProfile
+from django.contrib.auth import authenticate, login
+
 from .models import (
     Hostel, Owner, House,
     UserProfile, BookingRequest, RequirementAlert,
@@ -15,16 +18,43 @@ def front_page(request):
 
 
 def registration(request):
-    if request.method == "POST":
-        Owner.objects.create(
-            name=request.POST.get('name') or "",
-            phone=request.POST.get('phone') or "",
-            email=request.POST.get('email') or "",
-            password = request.POST.get('password') or ""
-        )
-        return redirect('login_view')
+     if request.method == "POST":
+        role = request.POST.get('role')
+        username = request.POST.get('name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        phone = request.POST.get('phone')
 
-    return render(request, 'registration.html')
+        # 1. Create the Auth User (Always do this so they can log in)
+        if not User.objects.filter(username=email).exists():
+            User.objects.create_user(
+                username=email,
+                email=email,
+                password=password,
+                first_name=username
+            )
+
+        # 2. Add to the Student table in CORE
+        if role == 'student':
+            Student.objects.create(
+                name=username,
+                email=email,
+                phone=phone,
+                password=password
+            )
+
+        # 3. Add to the Owner table in CORE (if they chose Owner)
+        elif role == 'owner':
+            Owner.objects.create(
+                name=username,
+                email=email,
+                phone=phone,
+                password=password
+            )
+
+            return redirect('login')
+
+     return render(request, 'registration.html')
 
 
 def login_view(request):
@@ -32,52 +62,70 @@ def login_view(request):
         email = request.POST.get("email")
         password = request.POST.get("password")
 
+        # 1. Authenticate against the built-in User table (uses hashes)
+        user = authenticate(request, username=email, password=password)
 
-        user = Owner.objects.filter(email=email, password=password).first()
+        if user is not None:
+            # 2. Log the user in (this creates the session)
+            login(request, user)
 
-        if user:
-
-            request.session['owner_id'] = user.id
+            # 3. Redirect to your dashboard
             return redirect('dashboard')
         else:
-
-            return HttpResponse("Invalid email or password. Please try again.")
+            # Show the error message you saw in your screenshot
+            return render(request, 'login.html', {'error': "Invalid email or password."})
 
     return render(request, 'login.html')
 
 
 def dashboard(request):
+    is_admin = request.user.is_authenticated and request.user.is_superuser
+    owner_id = request.session.get('owner_id')
+
+    user_data = None
+    if owner_id:
+        user_data = Owner.objects.filter(id=owner_id).first()
+
     if request.method == "POST":
-        UserProfile.objects.create(
-            full_name=request.POST.get("full_name") or "",
-            email=request.POST.get("email") or "",
-            phone=request.POST.get("phone") or "",
-            address=request.POST.get("address") or "",
-            language=request.POST.get("language") or ""
+        # Update or Create Profile Logic
+        full_name = request.POST.get("full_name") or ""
+        email = request.POST.get("email") or ""
+
+        UserProfile.objects.update_or_create(
+            email=email,
+            defaults={
+                'full_name': full_name,
+                'phone': request.POST.get("phone") or "",
+                'address': request.POST.get("address") or "",
+                'language': request.POST.get("language") or "",
+            }
         )
         return redirect("search_page")
 
-    return render(request, 'dashboard.html')
+    context = {
+        'user_data': user_data,
+        'show_admin_btn': is_admin or owner_id
+    }
+    return render(request, 'dashboard.html', context)
 
 
-@staff_member_required
+
 def admin_dashboard(request):
+    is_admin = request.user.is_authenticated and request.user.is_superuser
+    is_owner = 'owner_id' in request.session
+
+    if not (is_admin or is_owner):
+        return redirect('dashboard')
+
     total_users = Owner.objects.count()
     total_hostels = Hostel.objects.count()
     total_houses = House.objects.count()
-
     total_booking_requests = BookingRequest.objects.count()
     total_requirement_alerts = RequirementAlert.objects.count()
     total_applications = ApplicationForm.objects.count()
     total_feedbacks = PaymentFeedback.objects.count()
 
-    owners = Owner.objects.all().order_by('-id')[:10]
-    booking_requests = BookingRequest.objects.all().order_by('-id')[:10]
-    requirement_alerts = RequirementAlert.objects.all().order_by('-id')[:10]
-    applications = ApplicationForm.objects.all().order_by('-id')[:10]
-    feedbacks = PaymentFeedback.objects.all().order_by('-id')[:10]
-
-    return render(request, 'admin_dashboard.html', {
+    context = {
         'total_users': total_users,
         'total_hostels': total_hostels,
         'total_houses': total_houses,
@@ -85,12 +133,20 @@ def admin_dashboard(request):
         'total_requirement_alerts': total_requirement_alerts,
         'total_applications': total_applications,
         'total_feedbacks': total_feedbacks,
-        'owners': owners,
-        'booking_requests': booking_requests,
-        'requirement_alerts': requirement_alerts,
-        'applications': applications,
-        'feedbacks': feedbacks,
-    })
+        'owners': Owner.objects.all().order_by('-id')[:10],
+        'booking_requests': BookingRequest.objects.all().order_by('-id')[:10],
+        'requirement_alerts': RequirementAlert.objects.all().order_by('-id')[:10],
+        'applications': ApplicationForm.objects.all().order_by('-id')[:10],
+        'feedbacks': PaymentFeedback.objects.all().order_by('-id')[:10],
+    }
+    return render(request, 'admin_dashboard.html', context)
+
+def logout_view(request):
+    if 'owner_id' in request.session:
+        del request.session['owner_id']
+    from django.contrib.auth import logout
+    logout(request)
+    return redirect('front_page')
 
 
 def add_hostel(request):
@@ -215,7 +271,7 @@ def payment_feedback(request):
     return render(request, "payment_feedback.html")
 
 
-@staff_member_required
+
 def export_excel(request):
     wb = openpyxl.Workbook()
 
@@ -339,7 +395,7 @@ def export_excel(request):
     return response
 
 
-@staff_member_required
+
 def add_house_admin(request):
     if request.method == "POST":
         owner = Owner.objects.create(
@@ -361,7 +417,7 @@ def add_house_admin(request):
     return render(request, "add_house_admin.html")
 
 
-@staff_member_required
+
 def add_boys_hostel_admin(request):
     if request.method == "POST":
         owner = Owner.objects.create(
@@ -386,7 +442,7 @@ def add_boys_hostel_admin(request):
     })
 
 
-@staff_member_required
+
 def add_girls_hostel_admin(request):
     if request.method == "POST":
         owner = Owner.objects.create(

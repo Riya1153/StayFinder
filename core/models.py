@@ -113,3 +113,16 @@ class PaymentFeedback(models.Model):
 
     def __str__(self):
         return self.payment_method or "Payment Feedback"
+
+
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=15)
+    gender = models.CharField(max_length=10, blank=True, null=True)
+    # This stores the plain text for your admin view
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name

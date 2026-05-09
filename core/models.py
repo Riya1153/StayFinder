@@ -127,3 +127,36 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+
+
+from django.db import models
+
+
+class Application(models.Model):
+    # Links to both models (one will be empty depending on the booking)
+    house = models.ForeignKey('House', on_delete=models.CASCADE, related_name='applications', null=True, blank=True)
+    hostel = models.ForeignKey('Hostel', on_delete=models.CASCADE, related_name='applications', null=True, blank=True)
+
+
+    full_name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    check_in_date = models.DateField()
+    roommates_count = models.IntegerField(default=0)
+    stay_duration = models.CharField(max_length=100)
+
+
+    current_address = models.TextField()
+    own_phone = models.CharField(max_length=20)
+    guardian_phone = models.CharField(max_length=20)
+    nid_number = models.CharField(max_length=50)
+
+
+    applied_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+
+        property_title = self.house.title if self.house else self.hostel.title
+        return f"Application from {self.full_name} for {property_title}"
+
+

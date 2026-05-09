@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Owner, Hostel, House, BoysHostel, GirlsHostel,Student
+from .models import Owner, Hostel, House, BoysHostel, GirlsHostel,Student,Application
 
 
 @admin.register(Owner)
@@ -51,3 +51,36 @@ class StudentAdmin(admin.ModelAdmin):
     # This adds the columns to your admin list view
     list_display = ('name', 'email', 'phone', 'password')
 
+
+
+
+@admin.register(Application)
+class ApplicationAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'full_name',
+        'get_property',
+        'phone_number',
+        'own_phone',
+        'guardian_phone',
+        'nid_number',
+        'current_address',
+        'check_in_date',
+        'applied_on'
+    )
+
+
+    search_fields = ('full_name', 'email', 'nid_number', 'phone_number')
+
+
+    list_filter = ('check_in_date', 'applied_on')
+
+
+    def get_property(self, obj):
+        if obj.house:
+            return f"House: {obj.house.title}"
+        if obj.hostel:
+            return f"Hostel: {obj.hostel.title}"
+        return "No Property"
+
+    get_property.short_description = 'Property'

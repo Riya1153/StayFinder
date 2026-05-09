@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import Owner, UserProfile
 from django.contrib.auth import authenticate, login
 from .models import House
+from .models import Hostel, House, Application
 
 from .models import (
     Hostel, Owner, House,
@@ -231,24 +232,35 @@ def requirement(request):
 
 
 def payment_process(request):
+
+    property_id = request.GET.get('property_id')
+
     if request.method == 'POST':
-        ApplicationForm.objects.create(
-            name=request.POST.get("name") or "",
-            phone_number=request.POST.get("phone_number") or "",
-            email=request.POST.get("email") or "",
-            check_in_date=request.POST.get("check_in_date") or "",
-            number_of_roommates=request.POST.get("number_of_roommates") or "",
-            stay_duration=request.POST.get("stay_duration") or "",
-            address=request.POST.get("address") or "",
-            parent_phone_number=request.POST.get("parent_phone_number") or "",
-            nid_or_passport=request.POST.get("nid_or_passport") or "",
-            emergency_contact=request.POST.get("emergency_contact") or "",
-            copy_id_number=request.POST.get("copy_id_number") or "",
-            draft_email_address=request.POST.get("draft_email_address") or ""
+
+        house_obj = House.objects.filter(id=property_id).first()
+        hostel_obj = Hostel.objects.filter(id=property_id).first()
+
+
+        Application.objects.create(
+            house=house_obj,
+            hostel=hostel_obj,
+            full_name=request.POST.get("name"),
+            phone_number=request.POST.get("phone"),
+            email=request.POST.get("email"),
+            check_in_date=request.POST.get('check_in'),  # Changed from 'check_in_date'
+            roommates_count=request.POST.get('roommates_count', 0),
+            stay_duration=request.POST.get('duration'),
+            current_address=request.POST.get('address'),
+            own_phone=request.POST.get('phone_own'),
+            guardian_phone=request.POST.get('phone_guardian'),
+            nid_number=request.POST.get('nid_info'),
+
         )
+
         return redirect('payment_method')
 
     return render(request, 'payment_process.html')
+
 
 
 def payment_method(request):

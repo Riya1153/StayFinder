@@ -20,8 +20,15 @@
         <div class="step">3. Enter Merchant Number: 01XXXXXXXXX</div>
         <div class="step">4. Enter Amount and your PIN.</div>
         <div class="step">5. Enter Transaction ID below to verify.</div>
-        <input type="text" placeholder="Enter Transaction ID" style="width: 90%; padding: 10px; margin-top: 10px; border: 1px solid #ccc;">
-        <button class="btn-confirm">VERIFY PAYMENT</button>
+
+
+        <form method="POST" action="{% url 'bkash_payment' %}">
+            {% csrf_token %}
+            <input type="text" name="transaction_id" placeholder="Enter Transaction ID" required
+                   style="width: 90%; padding: 10px; margin-top: 10px; border: 1px solid #ccc;">
+
+            <button type="submit" class="btn-confirm">VERIFY PAYMENT</button>
+        </form>
     </div>
 </body>
 </html>

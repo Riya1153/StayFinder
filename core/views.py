@@ -5,6 +5,7 @@ from .models import Owner, UserProfile
 from django.contrib.auth import authenticate, login
 from .models import House
 from .models import Hostel, House, Application
+from .models import PaymentFeedback
 
 from .models import (
     Hostel, Owner, House,
@@ -265,33 +266,31 @@ def payment_process(request):
 
 def payment_method(request):
     if request.method == "POST":
+
         method = request.POST.get("payment_method") or ""
+        rating_value = request.POST.get("rating") or "0"
+        complaint_text = request.POST.get("complaint") or ""
+
+
+        PaymentFeedback.objects.create(
+            user=request.user if request.user.is_authenticated else None,
+            payment_method=method,
+            rating=int(rating_value) if rating_value.isdigit() else 0,
+            complaint=complaint_text
+        )
+
 
         if method == "bkash":
             return redirect("bkash_payment")
-
         elif method == "atm":
             return redirect("atm_payment")
-
-        elif method == "cash":
-            return redirect("payment_feedback")
-
         else:
-            return redirect("payment_feedback")
+
+            return redirect("payment_success")
 
     return render(request, "payment_method.html")
 
 
-def payment_feedback(request):
-    if request.method == "POST":
-        PaymentFeedback.objects.create(
-            payment_method=request.POST.get("payment_method") or "",
-            rating=request.POST.get("rating") or "",
-            complaint=request.POST.get("complaint") or ""
-        )
-        return redirect("payment_success")
-
-    return render(request, "payment_feedback.html")
 
 
 
@@ -492,13 +491,49 @@ def add_girls_hostel_admin(request):
 
 
 def bkash_payment(request):
+    if request.method == "POST":
+        trx_id = request.POST.get('transaction_id')
+        # Store both the ID and the method in session
+        request.session['temp_trx_id'] = trx_id
+        request.session['temp_method'] = 'BKASH'
+        return redirect('payment_method')
     return render(request, 'bkash_payment.html')
 
 
+def submit_feedback(request):
+    if request.method == "POST":
+        # Get data from the form
+        method = request.POST.get('pay_method')
+        rating = request.POST.get('rating')
+        complaint = request.POST.get('complaint')
+
+        # Get bKash ID from session memory
+        trx_id = request.session.get('temp_trx_id', '')
+
+        # Save to database
+        PaymentFeedback.objects.create(
+            user=request.user if request.user.is_authenticated else None,
+            payment_method=method,
+            transaction_id=trx_id,
+            rating=rating,
+            complaint=complaint
+        )
+
+        # Clear session memory after saving
+        request.session.pop('temp_trx_id', None)
+        request.session.pop('temp_method', None)
+
+
+        return redirect('search_page')
+
+    return redirect('payment_method')
+
+
 def atm_payment(request):
-    return render(request, 'atm_payment.html')
+    if request.method == "POST":
+        # Logic for ATM/Card payment (if you have a separate form)
+        # For now, let's just mark it as ATM and move back
+        request.session['temp_method'] = 'ATM'
+        return redirect('payment_method')
 
-
-def payment_success(request):
-    return render(request, 'payment_success.html')
-
+    return render(request, 'atm_payment.html')  # Ensure this template exists

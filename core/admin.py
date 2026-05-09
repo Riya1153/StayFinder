@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Owner, Hostel, House, BoysHostel, GirlsHostel,Student,Application
+from .models import Owner, Hostel, House, BoysHostel, GirlsHostel,Student,Application,PaymentFeedback
 
 
 @admin.register(Owner)
@@ -84,3 +84,14 @@ class ApplicationAdmin(admin.ModelAdmin):
         return "No Property"
 
     get_property.short_description = 'Property'
+
+
+
+@admin.register(PaymentFeedback)
+class PaymentFeedbackAdmin(admin.ModelAdmin):
+
+    list_display = ('get_email',  'payment_method', 'rating', 'complaint','transaction_id')
+
+    def get_email(self, obj):
+        return obj.user.email if obj.user else "Guest"
+    get_email.short_description = 'User Email'

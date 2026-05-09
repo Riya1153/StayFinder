@@ -156,9 +156,14 @@ class Application(models.Model):
     applied_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        if self.house:
+            return f"Application for House: {self.house.title}"
+        elif self.hostel:
+            return f"Application for Hostel: {self.hostel.title}"
+        else:
+            return f"Application by {self.full_name}"
 
-        property_title = self.house.title if self.house else self.hostel.title
-        return f"Application from {self.full_name} for {property_title}"
+
 
 
 

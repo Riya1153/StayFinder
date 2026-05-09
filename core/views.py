@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from .models import House
 from .models import Hostel, House, Application
 from .models import PaymentFeedback
+from datetime import date
 
 from .models import (
     Hostel, Owner, House,
@@ -232,36 +233,43 @@ def requirement(request):
     return render(request, 'requirement.html')
 
 
-def payment_process(request):
 
+def payment_process(request):
     property_id = request.GET.get('property_id')
 
     if request.method == 'POST':
-
         house_obj = House.objects.filter(id=property_id).first()
         hostel_obj = Hostel.objects.filter(id=property_id).first()
 
+        # 1. Capture the raw date string from the form
+        check_in_raw = request.POST.get('check_in')
 
+        # 2. Check if the date is empty to prevent the ValidationError
+        # If it's empty, we set it to today's date as a fallback
+        if not check_in_raw or check_in_raw == "":
+            check_in_date = date.today()
+        else:
+            check_in_date = check_in_raw
+
+        # 3. Create the object using the validated check_in_date
         Application.objects.create(
             house=house_obj,
             hostel=hostel_obj,
             full_name=request.POST.get("name"),
             phone_number=request.POST.get("phone"),
             email=request.POST.get("email"),
-            check_in_date=request.POST.get('check_in'),  # Changed from 'check_in_date'
+            check_in_date=check_in_date,  # Use the variable we just checked
             roommates_count=request.POST.get('roommates_count', 0),
             stay_duration=request.POST.get('duration'),
             current_address=request.POST.get('address'),
             own_phone=request.POST.get('phone_own'),
             guardian_phone=request.POST.get('phone_guardian'),
             nid_number=request.POST.get('nid_info'),
-
         )
 
         return redirect('payment_method')
 
     return render(request, 'payment_process.html')
-
 
 
 def payment_method(request):
